@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>v2 - Programa de Implementação e Acompanhamento | PIM™</title>
+<title>PIM | Clube dos Produtores</title>
 <meta name="description" content="Mentoria com Serviço + Venda Consultiva. O mecanismo imbatível de escala com lucro que gera pelo menos 700 mil reais a cada 27 clientes, com +70% de margem. Há mais de 100 semanas.">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="PIM™ | Programa de Implementação e Acompanhamento">
+<meta property="og:title" content="PIM | Clube dos Produtores">
 <meta property="og:description" content="Mentoria com Serviço + Venda Consultiva. O mecanismo imbatível de escala com lucro que gera pelo menos 700 mil reais a cada 27 clientes, com +70% de margem.">
 <meta property="og:image" content="./img/rafael-palestrando-1.webp">
 <meta property="og:locale" content="pt_BR">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PIM™ | Programa de Implementação e Acompanhamento">
+<meta name="twitter:title" content="PIM | Clube dos Produtores">
 <meta name="twitter:description" content="Mentoria com Serviço + Venda Consultiva. O mecanismo imbatível de escala com lucro.">
 <meta name="twitter:image" content="./img/rafael-palestrando-1.webp">
 
-<!-- Favicon inline SVG -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23e7004c'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='56' font-weight='700' text-anchor='middle' fill='white'%3EP%3C/text%3E%3C/svg%3E">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="./img/favicon.png">
+<link rel="apple-touch-icon" href="./img/favicon.png">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +43,7 @@
     --accent-light: #ff2d6e;
     --accent-dim: rgba(231, 0, 76, 0.15);
     --accent-glow: rgba(231, 0, 76, 0.35);
+    --accent-shadow: 0 0 1px rgba(255, 255, 255, 0.55), 0 0 12px rgba(255, 255, 255, 0.18);
     --font-display: 'Fraunces', 'Georgia', serif;
     --font-body: 'Manrope', -apple-system, sans-serif;
   }
@@ -132,6 +134,7 @@
   .hl {
     color: var(--accent);
     font-weight: 700;
+    text-shadow: var(--accent-shadow);
   }
 
   .hl-bg {
@@ -169,36 +172,6 @@
   section.tight { padding: 40px 0; }
   section.loose { padding: 120px 0; }
 
-  /* ---- Header ---- */
-  .site-header {
-    padding: 32px 0 0;
-    position: relative;
-    z-index: 3;
-  }
-
-  .site-header-inner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .site-logo {
-    height: 64px;
-    width: auto;
-    display: block;
-    filter: drop-shadow(0 4px 20px rgba(231, 0, 76, 0.25));
-    transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
-  }
-
-  .site-logo:hover {
-    transform: scale(1.03);
-  }
-
-  @media (max-width: 640px) {
-    .site-header { padding: 24px 0 0; }
-    .site-logo { height: 48px; }
-  }
-
   /* ---- Hero ---- */
   .hero {
     padding: 60px 0 80px;
@@ -206,65 +179,14 @@
     overflow: hidden;
   }
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px;
-    border: 1px solid var(--border-strong);
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(10px);
-    margin-bottom: 40px;
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--accent);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.3); }
-  }
-
   .hero h1 {
     margin-bottom: 32px;
     font-size: clamp(2.75rem, 6.5vw, 5.5rem);
   }
 
-  .hero h1 .version {
-    display: block;
-    font-family: var(--font-body);
-    font-size: 0.28em;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .hero h1 .tm {
-    color: var(--accent);
-    font-family: var(--font-body);
-    font-size: 0.4em;
-    vertical-align: super;
-    font-weight: 600;
-  }
-
   .reading-time {
     display: inline-block;
-    color: var(--accent);
+    color: var(--text);
     font-style: italic;
     font-family: var(--font-display);
     font-size: 0.95rem;
@@ -329,6 +251,7 @@
 
   .pillar .pillar-accent {
     color: var(--accent);
+    text-shadow: var(--accent-shadow);
   }
 
   @media (max-width: 640px) {
@@ -367,6 +290,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-family: var(--font-body);
+    text-shadow: var(--accent-shadow);
   }
 
   /* ---- Stats Grid ---- */
@@ -396,6 +320,7 @@
     display: block;
     margin-bottom: 10px;
     font-variation-settings: "opsz" 144, "SOFT" 50;
+    text-shadow: var(--accent-shadow);
   }
 
   .stat-label {
@@ -519,6 +444,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     margin-bottom: 12px;
+    text-shadow: var(--accent-shadow);
   }
 
   .phase h2 {
@@ -616,6 +542,7 @@
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 16px;
+    text-shadow: var(--accent-shadow);
   }
 
   .testimonial h3 {
@@ -632,6 +559,7 @@
     font-family: var(--font-display);
     color: var(--accent);
     font-weight: 600;
+    text-shadow: var(--accent-shadow);
   }
 
   /* ---- WhatsApp CTA ---- */
@@ -708,6 +636,7 @@
     color: var(--accent);
     margin-bottom: 20px;
     letter-spacing: -0.01em;
+    text-shadow: var(--accent-shadow);
   }
 
   /* ---- Final CTA section ---- */
@@ -745,6 +674,7 @@
     text-transform: uppercase;
     display: block;
     margin-bottom: 8px;
+    text-shadow: var(--accent-shadow);
   }
 
   .vagas-box .sub {
@@ -778,6 +708,7 @@
     font-size: 1.4em;
     display: inline-block;
     margin-right: 6px;
+    text-shadow: var(--accent-shadow);
   }
 
   /* ---- Scroll reveal ---- */
@@ -843,21 +774,11 @@
 
 <main>
 
-  <!-- ================ HEADER ================ -->
-  <header class="site-header">
-    <div class="wrap-wide site-header-inner">
-      <img src="./img/logo-clube-dos-produtores.png" alt="Clube dos Produtores" class="site-logo">
-    </div>
-  </header>
-
   <!-- ================ HERO ================ -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-badge reveal">PIM™ · Programa de Implementação e Acompanhamento</div>
-
       <h1 class="reveal">
-        <span class="version">v2</span>
-        Programa de<br>Implementação e<br>Acompanhamento <span class="tm">PIM™</span>
+        Programa de<br>Implementação e<br>Acompanhamento <span class="hl">PIM</span>
       </h1>
 
       <div class="reading-time reveal">(Tempo de leitura - 5 minutos)</div>
@@ -943,7 +864,7 @@
   <section class="tight">
     <div class="wrap">
       <h2 class="reveal" style="text-align: center;">
-        O <span class="hl">PIM™</span> está dividido em <em>2 fases</em> complementares.
+        O <span class="hl">PIM</span> está dividido em <em>2 fases</em> complementares.
       </h2>
     </div>
   </section>
