@@ -1,1 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<meta name="theme-color" content="#0a0a0a">
+<title>Odontologia Além da Boca · Masterclass Resolução CFO 286/2026 · Dr. Pedro Feitosa</title>
 
+<meta name="description" content="Masterclass Ao Vivo para cirurgiões-dentistas que operam HOF, implantes e reabilitações de alto ticket. Os 3 pontos cegos da Resolução CFO 286/2026 — com Dr. Pedro Feitosa.">
+<meta name="author" content="Dr. Pedro Feitosa · Odontologia Além da Boca">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Masterclass · Resolução CFO 286/2026 · Dr. Pedro Feitosa">
+<meta property="og:description" content="68% dos cirurgiões-dentistas condenados tinham técnica impecável. Como se adaptar à nova Resolução CFO 286/2026 sem expor CRO, patrimônio e clínica.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================================
+   TOKENS · DARK + PURPLE
+   ================================ */
+:root{
+  --bg:#0a0a0a;
+  --bg-2:#141414;
+  --surface:#1a1a1a;
+  --surface-2:#232323;
+  --border:#2a2a2a;
+  --border-strong:#3a3a3a;
+  --text:#ffffff;
+  --text-dim:#a3a3a3;
+  --text-muted:#6e6e6e;
+  --accent:#B026FF;
+  --accent-bright:#c042ff;
+  --accent-dim:#8a1ec7;
+  --accent-dark:#5a1382;
+  --danger:#ff3b30;
+  --live:#ff3b30;
+
+  --font-display:'Bricolage Grotesque',sans-serif;
+  --font-body:'Manrope',sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-weight:400;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+/* Grid de fundo sutil */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(176,38,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(176,38,255,.025) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  mask-image:radial-gradient(ellipse at center,black 0%,transparent 90%);
+  -webkit-mask-image:radial-gradient(ellipse at center,black 0%,transparent 90%);
+  z-index:0;
+}
+
+/* Brilho no canto superior — atmosfera */
+body::after{
+  content:'';
+  position:fixed;
+  top:-200px;
+  right:-200px;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle,rgba(176,38,255,.14),transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+
+main, header, footer, section{position:relative;z-index:1}
+
+em{font-style:normal;color:var(--accent);font-weight:800}
+strong{font-weight:700;color:var(--text)}
+
+/* ================================
+   HEADER
+   ================================ */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+  background:rgba(10,10,10,.85);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand-mark{
+  width:32px;
+  height:32px;
+  border:1.5px solid var(--accent);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:13px;
+  color:var(--accent);
+  letter-spacing:-.02em;
+  box-shadow:0 0 16px rgba(176,38,255,.30),inset 0 0 8px rgba(176,38,255,.10);
+}
+.brand-text{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  color:var(--text);
+  line-height:1;
+}
+.brand-text small{
+  display:block;
+  color:var(--text-muted);
+  font-size:9px;
+  font-weight:500;
+  margin-top:3px;
+  letter-spacing:.18em;
+}
+.header-status{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:600;
+}
+.live-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--live);
+  box-shadow:0 0 10px var(--live);
+  animation:pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.45;transform:scale(.85)}
+}
+
+/* ================================
+   HERO
+   ================================ */
+.hero{
+  padding:48px 20px 56px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:680px;
+  margin:0 auto;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 14px 7px 12px;
+  background:rgba(176,38,255,.10);
+  border:1px solid rgba(176,38,255,.35);
+  border-radius:100px;
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.badge-icon{
+  width:14px;
+  height:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.badge-icon svg{
+  width:12px;
+  height:12px;
+  stroke:var(--accent);
+  fill:none;
+  stroke-width:2;
+}
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--accent);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow::before{
+  content:'';
+  width:24px;
+  height:1px;
+  background:var(--accent);
+}
+
+.headline{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(30px,7.6vw,46px);
+  line-height:1.04;
+  letter-spacing:-.035em;
+  color:var(--text);
+  font-variation-settings:"opsz" 96;
+  margin-bottom:22px;
+}
+.headline em{display:inline}
+
+.subheadline{
+  font-family:var(--font-body);
+  font-weight:500;
+  font-size:clamp(15px,3.8vw,17px);
+  line-height:1.55;
+  color:var(--text);
+  letter-spacing:-.005em;
+  padding-left:16px;
+  border-left:3px solid var(--accent);
+  margin-bottom:36px;
+}
+.subheadline em{display:inline}
+
+/* TRIO CARDS */
+.event-rules{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+  margin-bottom:32px;
+}
+.rule-card{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 16px;
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  border-left:2px solid var(--accent);
+  border-radius:4px;
+}
+.rule-icon{
+  flex-shrink:0;
+  width:32px;
+  height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(176,38,255,.10);
+  border-radius:4px;
+}
+.rule-icon svg{
+  width:16px;
+  height:16px;
+  stroke:var(--accent);
+  fill:none;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.rule-body{
+  flex:1;
+  min-width:0;
+}
+.rule-label{
+  font-family:var(--font-mono);
+  font-size:9.5px;
+  color:var(--text-muted);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:5px;
+}
+.rule-text{
+  font-family:var(--font-body);
+  font-size:14.5px;
+  color:var(--text);
+  font-weight:600;
+  line-height:1.3;
+  letter-spacing:-.005em;
+}
+.rule-text strong{color:var(--accent);font-weight:700}
+.rule-text .sep{color:var(--border-strong); font-weight:400; margin:0 5px;}
+.rule-text .dim-word{color:var(--text-dim);font-weight:500}
+.rule-text .small{font-size:13px; color:var(--text-dim); font-weight:500;}
+
+/* CTA PRIMÁRIO */
+.cta-wrap{margin-top:8px}
+.cta-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  padding:18px 22px;
+  background:#99FF00;
+  color:#000;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(15px,4vw,17px);
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .25s ease, background .2s ease;
+  box-shadow:0 0 0 1px rgba(153,255,0,.35),0 8px 32px rgba(153,255,0,.30),0 2px 0 rgba(0,0,0,.4);
+  position:relative;
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+  animation:cta-glow 2.4s ease-in-out infinite;
+}
+@keyframes cta-glow{
+  0%,100%{box-shadow:0 0 0 1px rgba(153,255,0,.35),0 8px 32px rgba(153,255,0,.30),0 2px 0 rgba(0,0,0,.4)}
+  50%{box-shadow:0 0 0 1px rgba(153,255,0,.55),0 12px 44px rgba(153,255,0,.50),0 2px 0 rgba(0,0,0,.4)}
+}
+.cta-button::after{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-25deg);
+  animation:shine 3.5s ease-in-out infinite;
+}
+@keyframes shine{
+  0%,70%,100%{left:-100%}
+  85%{left:130%}
+}
+.cta-button:hover, .cta-button:active{
+  transform:translateY(-2px);
+  background:#aaff1a;
+}
+.cta-button:active{transform:translateY(0)}
+.cta-button .arrow{
+  font-size:1.1em;
+  font-weight:800;
+  transition:transform .2s ease;
+}
+.cta-button:hover .arrow{transform:translateX(4px)}
+
+.cta-note{
+  margin-top:14px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--text-muted);
+  text-align:center;
+  letter-spacing:.05em;
+  line-height:1.5;
+}
+.cta-note strong{color:var(--text-dim);font-weight:600}
+
+/* ================================
+   SEÇÃO · O QUE VOCÊ VAI DESCOBRIR
+   ================================ */
+.discover{
+  padding:64px 20px 40px;
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg,transparent,rgba(20,20,20,.4));
+}
+.discover-inner{
+  max-width:680px;
+  margin:0 auto;
+}
+.section-head{
+  margin-bottom:36px;
+}
+.section-title{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(26px,6.4vw,36px);
+  line-height:1.08;
+  letter-spacing:-.035em;
+  color:var(--text);
+  font-variation-settings:"opsz" 96;
+}
+.section-title em{display:inline}
+
+.bullets{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.bullet{
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:22px 20px;
+  position:relative;
+  transition:border-color .25s ease, transform .25s ease;
+  overflow:hidden;
+}
+.bullet::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  background:var(--accent);
+  opacity:.6;
+  transition:opacity .25s ease;
+}
+.bullet:hover{
+  border-color:var(--border-strong);
+  transform:translateX(2px);
+}
+.bullet:hover::before{opacity:1}
+
+.bullet-head{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:12px;
+}
+.bullet-num{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(176,38,255,.12);
+  border:1.5px solid rgba(176,38,255,.50);
+  border-radius:50%;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:14px;
+  color:var(--accent);
+  letter-spacing:-.02em;
+  font-variation-settings:"opsz" 36;
+  box-shadow:0 0 14px rgba(176,38,255,.20),inset 0 0 8px rgba(176,38,255,.08);
+}
+.bullet-title{
+  flex:1;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(18px,4.6vw,22px);
+  line-height:1.2;
+  letter-spacing:-.025em;
+  color:var(--text);
+  font-variation-settings:"opsz" 36;
+}
+.bullet-title em{font-style:normal;color:var(--accent);font-weight:800}
+
+.bullet-body{
+  padding-left:58px;
+  font-family:var(--font-body);
+  font-size:14.5px;
+  line-height:1.62;
+  color:var(--text-dim);
+  font-weight:400;
+}
+.bullet-body strong{color:var(--text);font-weight:700}
+
+/* ================================
+   SEÇÃO · DOIS CAMINHOS (centralizado + cards verticais)
+   ================================ */
+.paths{
+  padding:64px 20px 40px;
+  border-top:1px solid var(--border);
+}
+.paths-inner{
+  max-width:860px;
+  margin:0 auto;
+}
+.paths-head{
+  max-width:680px;
+  margin:0 auto 40px;
+  text-align:center;
+}
+.paths-head .eyebrow{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+}
+.paths-head .eyebrow::before{display:none}
+.paths-head .eyebrow::after{
+  content:'';
+  width:24px;
+  height:1px;
+  background:var(--accent);
+  display:inline-block;
+  margin-left:4px;
+}
+.paths-head .eyebrow{
+  position:relative;
+}
+.paths-head .eyebrow::before{
+  content:'';
+  display:inline-block;
+  width:24px;
+  height:1px;
+  background:var(--accent);
+  margin-right:4px;
+}
+.paths-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+.path-card{
+  background:var(--bg-2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:34px 26px 36px;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .25s ease;
+  display:flex;
+  flex-direction:column;
+}
+.path-card::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:3px;
+  transition:opacity .25s ease;
+  opacity:.6;
+}
+.path-card.path-a::before{background:#ff6e64}
+.path-card.path-b::before{background:var(--accent)}
+.path-card:hover{ border-color:var(--border-strong); }
+.path-card:hover::before{opacity:1}
+
+.path-label{
+  display:inline-block;
+  align-self:flex-start;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:18px;
+  padding:5px 11px;
+  border-radius:3px;
+}
+.path-a .path-label{
+  background:rgba(255,59,48,.12);
+  color:#ff8b80;
+  border:1px solid rgba(255,59,48,.28);
+}
+.path-b .path-label{
+  background:rgba(176,38,255,.12);
+  color:var(--accent);
+  border:1px solid rgba(176,38,255,.35);
+}
+.path-card h3{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(20px,5vw,24px);
+  line-height:1.18;
+  letter-spacing:-.025em;
+  color:var(--text);
+  margin-bottom:20px;
+  font-variation-settings:"opsz" 36;
+}
+.path-card p{
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.7;
+  color:var(--text-dim);
+  font-weight:400;
+}
+.path-card p strong{color:var(--text);font-weight:700}
+
+/* ================================
+   CTA FINAL
+   ================================ */
+.cta-final{
+  padding:48px 20px 56px;
+  border-top:1px solid var(--border);
+  position:relative;
+}
+.cta-final::before{
+  content:'';
+  position:absolute;
+  top:-1px;
+  left:50%;
+  transform:translateX(-50%);
+  width:80%;
+  max-width:500px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:.5;
+}
+.cta-final-inner{
+  max-width:680px;
+  margin:0 auto;
+  text-align:center;
+}
+.cta-final-eyebrow{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--accent);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:18px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.cta-final-eyebrow .live-dot{ width:8px; height:8px; }
+.cta-final-title{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(28px,6.8vw,38px);
+  line-height:1.04;
+  letter-spacing:-.04em;
+  color:var(--text);
+  margin-bottom:14px;
+  font-variation-settings:"opsz" 96;
+}
+.cta-final-title em{display:inline}
+.cta-final-text{
+  font-family:var(--font-body);
+  font-size:15px;
+  line-height:1.6;
+  color:var(--text-dim);
+  margin-bottom:30px;
+  max-width:560px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.cta-final-text strong{color:var(--text);font-weight:700}
+.cta-final-text p + p{margin-top:12px}
+
+.scarcity{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 12px;
+  background:rgba(255,59,48,.08);
+  border:1px solid rgba(255,59,48,.3);
+  border-radius:100px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:#ff6e64;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:24px;
+}
+.scarcity-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ff3b30;
+  box-shadow:0 0 8px #ff3b30;
+  animation:pulse 1.6s ease-in-out infinite;
+}
+
+/* ================================
+   AUTORIDADE · DR. PEDRO
+   ================================ */
+.authority{
+  padding:64px 20px 56px;
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(20,20,20,.4),transparent);
+}
+.authority-inner{
+  max-width:920px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+  align-items:start;
+}
+.authority-photo-wrap{
+  position:relative;
+  max-width:280px;
+  margin:0 auto;
+}
+.authority-photo{
+  width:100%;
+  aspect-ratio:4 / 5;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid var(--border);
+  display:block;
+  filter:saturate(1.05) contrast(1.02);
+}
+.authority-content{
+  display:flex;
+  flex-direction:column;
+}
+.authority-eyebrow{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--accent);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.authority-eyebrow::before{
+  content:'';
+  width:24px;
+  height:1px;
+  background:var(--accent);
+}
+.authority-name{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(26px,6vw,34px);
+  line-height:1.04;
+  letter-spacing:-.035em;
+  color:var(--text);
+  margin-bottom:6px;
+  font-variation-settings:"opsz" 96;
+}
+.authority-role{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:600;
+  margin-bottom:22px;
+}
+.authority-bio{
+  font-family:var(--font-body);
+  font-size:15px;
+  line-height:1.65;
+  color:var(--text-dim);
+}
+.authority-bio strong{color:var(--text);font-weight:700}
+
+/* ================================
+   FOOTER
+   ================================ */
+.site-footer{
+  padding:28px 20px 36px;
+  border-top:1px solid var(--border);
+  text-align:center;
+  background:var(--bg-2);
+}
+.footer-brand{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:700;
+  margin-bottom:6px;
+}
+.footer-meta{
+  font-family:var(--font-mono);
+  font-size:9.5px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  opacity:.55;
+  font-weight:500;
+}
+
+/* ================================
+   RESPONSIVE · DESKTOP UP
+   ================================ */
+@media (min-width: 720px){
+  .hero{padding:88px 32px 80px}
+  .hero-inner, .discover-inner, .cta-final-inner, .paths-head{max-width:760px}
+
+  .badge{font-size:11.5px;padding:8px 16px 8px 14px}
+  .headline{font-size:clamp(38px,5.4vw,54px)}
+  .subheadline{font-size:18px;padding-left:20px}
+
+  .event-rules{
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:42px;
+  }
+  .rule-card{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:18px 18px 20px;
+    gap:14px;
+    text-align:left;
+  }
+  .rule-text{font-size:14.5px;line-height:1.35}
+
+  .cta-button{
+    padding:22px 28px;
+    font-size:18px;
+    max-width:480px;
+    margin:0 auto;
+  }
+  .cta-wrap{display:flex;flex-direction:column;align-items:center}
+
+  .discover{padding:96px 32px 56px}
+  .paths{padding:96px 32px 64px}
+  .section-title{font-size:clamp(34px,4.4vw,46px)}
+
+  .bullets{gap:16px}
+  .bullet{padding:28px 28px 26px}
+  .bullet-num{width:46px; height:46px; font-size:15px}
+  .bullet-title{font-size:22px}
+  .bullet-body{font-size:15.5px;padding-left:62px}
+
+  .paths-inner{max-width:820px}
+  .paths-grid{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .path-card{padding:40px 32px 44px}
+  .path-card h3{font-size:24px; margin-bottom:22px}
+  .path-card p{font-size:16.5px; line-height:1.72}
+
+  .cta-final{padding:80px 32px 88px}
+  .cta-final-title{font-size:clamp(40px,4.6vw,52px)}
+  .cta-final-text{font-size:17px;margin-bottom:36px}
+
+  .authority{padding:96px 32px 88px}
+  .authority-inner{
+    grid-template-columns:280px 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .authority-photo-wrap{margin:0}
+  .authority-name{font-size:clamp(30px,3.8vw,40px)}
+  .authority-bio{font-size:16px}
+}
+
+@media (min-width: 980px){
+  .headline{font-size:58px;line-height:1.02}
+  .subheadline{font-size:19px}
+  .section-title{font-size:50px}
+  .bullet-title{font-size:24px}
+  .path-card h3{font-size:25px}
+  .path-card p{font-size:17px}
+  .cta-final-title{font-size:54px}
+}
+
+/* ================================
+   ENTRY ANIMATIONS
+   ================================ */
+@media (prefers-reduced-motion: no-preference){
+  .anim{opacity:0;transform:translateY(14px);animation:fadeUp .8s cubic-bezier(.22,1,.36,1) forwards}
+  .anim.d1{animation-delay:.05s}
+  .anim.d2{animation-delay:.15s}
+  .anim.d3{animation-delay:.25s}
+  .anim.d4{animation-delay:.35s}
+  .anim.d5{animation-delay:.45s}
+  .anim.d6{animation-delay:.55s}
+  @keyframes fadeUp{
+    to{opacity:1;transform:translateY(0)}
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+
+/* Focus / seleção */
+a:focus-visible, button:focus-visible, .cta-button:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+::selection{
+  background:var(--accent);
+  color:#fff;
+}
+</style>
+</head>
+<body>
+
+<!-- ================================
+     HEADER
+     ================================ -->
+<header class="site-header">
+  <div class="brand">
+    <div class="brand-mark">O</div>
+    <div class="brand-text">
+      Odontologia Além da Boca
+      <small>com Dr. Pedro Feitosa</small>
+    </div>
+  </div>
+  <div class="header-status">
+    <span class="live-dot"></span>
+    <span>Ao Vivo</span>
+  </div>
+</header>
+
+<!-- ================================
+     HERO
+     ================================ -->
+<main class="hero">
+  <div class="hero-inner">
+
+    <div class="badge anim d1">
+      <span class="badge-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </span>
+      Exclusivo para cirurgiões-dentistas
+    </div>
+
+    <div class="eyebrow anim d2">Masterclass Ao Vivo</div>
+
+    <h1 class="headline anim d2">
+      Os 3 pontos cegos que a <em>Resolução CFO 286/2026</em> acabou de criar para quem opera <em>HOF</em> e <em>implantes</em>.
+    </h1>
+
+    <p class="subheadline anim d3">
+      <em>68%</em> dos cirurgiões-dentistas condenados nos tribunais brasileiros tinham <em>técnica impecável</em>: como se adaptar à nova <em>Resolução CFO 286/2026</em> sem expor o seu <em>CRO</em>, o seu <em>patrimônio</em> e a sua <em>clínica</em>.
+    </p>
+
+    <div class="event-rules anim d4">
+      <div class="rule-card">
+        <div class="rule-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/>
+            <line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div class="rule-body">
+          <div class="rule-label">Quando</div>
+          <div class="rule-text">
+            Quarta-feira <span class="sep">·</span> <strong>20h</strong> <span class="sep">·</span> <span class="small">Brasília</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+        </div>
+        <div class="rule-body">
+          <div class="rule-label">Formato</div>
+          <div class="rule-text">
+            <strong>Ao vivo</strong> <span class="sep">·</span> <span class="dim-word">sem gravação</span> <span class="sep">·</span> <span class="dim-word">sem replay</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <div class="rule-body">
+          <div class="rule-label">Acesso</div>
+          <div class="rule-text">
+            <strong>Sala fechada</strong> <span class="sep">·</span> <span class="dim-word">vagas limitadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap anim d5">
+      <a href="#" class="cta-button" role="button">
+        Reservar minha vaga — R$ 47
+        <span class="arrow">→</span>
+      </a>
+      <p class="cta-note">
+        O <strong>link da aula</strong> será enviado no <strong>grupo silencioso</strong> do WhatsApp.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ================================
+     SEÇÃO · O QUE VOCÊ VAI DESCOBRIR
+     ================================ -->
+<section class="discover">
+  <div class="discover-inner">
+
+    <div class="section-head">
+      <div class="eyebrow">O que ninguém te contou ainda</div>
+      <h2 class="section-title">
+        Na Masterclass você vai resolver <em>os 3 pontos cegos</em>:
+      </h2>
+    </div>
+
+    <div class="bullets">
+
+      <article class="bullet">
+        <div class="bullet-head">
+          <div class="bullet-num">01</div>
+          <h3 class="bullet-title">
+            O <em>Ponto Cego</em> da Estrutura
+          </h3>
+        </div>
+        <p class="bullet-body">
+          Por que o problema das salas de HOF <strong>não está em ter ou não 12m²</strong> — está em uma exigência da Resolução 286/2026 que passou despercebida na maioria das leituras técnicas, e que basta para um <strong>fiscal da Vigilância Sanitária interditar o seu consultório em minutos</strong>.
+        </p>
+      </article>
+
+      <article class="bullet">
+        <div class="bullet-head">
+          <div class="bullet-num">02</div>
+          <h3 class="bullet-title">
+            O <em>Ponto Cego</em> dos Equipamentos
+          </h3>
+        </div>
+        <p class="bullet-body">
+          Por que ter desfibrilador, oxigênio e kit de emergência completos <strong>não significa que sua clínica está aprovada</strong> — e o que a Vigilância Sanitária realmente verifica nos <strong>primeiros minutos de uma fiscalização de CEOF</strong>, antes mesmo de pedir os documentos.
+        </p>
+      </article>
+
+      <article class="bullet">
+        <div class="bullet-head">
+          <div class="bullet-num">03</div>
+          <h3 class="bullet-title">
+            O <em>Ponto Cego</em> da Documentação
+          </h3>
+        </div>
+        <p class="bullet-body">
+          O motivo pelo qual <strong>prontuários considerados bem preenchidos</strong> por cirurgiões-dentistas experientes são a peça mais explorada pela acusação em <strong>68% das condenações</strong> — e a brecha forense que o advogado adversário procura antes de qualquer outra coisa num processo de cirurgia estética.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================
+     SEÇÃO · DOIS CAMINHOS (centralizado)
+     ================================ -->
+<section class="paths">
+  <div class="paths-inner">
+
+    <div class="paths-head">
+      <div class="eyebrow">Você tem dois caminhos a partir de agora</div>
+      <h2 class="section-title">
+        A 286/2026 acaba de <em>dividir o mercado</em> em duas faixas.
+      </h2>
+    </div>
+
+    <div class="paths-grid">
+
+      <article class="path-card path-a">
+        <span class="path-label">O risco da inércia</span>
+        <h3>O profissional que segue como sempre</h3>
+        <p>
+          O cirurgião-dentista que continuar operando da mesma forma vai descobrir, na primeira intercorrência grave após a 286/2026, que <strong>reputação não impede autuação</strong> e <strong>experiência não impede processo</strong>. <strong>A maioria dos profissionais que chega a esse ponto não volta ao mesmo nível de prática.</strong>
+        </p>
+      </article>
+
+      <article class="path-card path-b">
+        <span class="path-label">A janela aberta</span>
+        <h3>O profissional que se posiciona primeiro</h3>
+        <p>
+          Há uma <strong>janela curta</strong> e ela vai fechar rápido. A oficialização da CEOF acaba de redesenhar quem pode operar HOF, implantes e reabilitações complexas com <strong>respaldo regulatório completo</strong>. <strong>Quem se posicionar primeiro não vai disputar esse mercado. Vai recebê-lo.</strong>
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================
+     CTA FINAL
+     ================================ -->
+<section class="cta-final">
+  <div class="cta-final-inner">
+
+    <div class="cta-final-eyebrow">
+      <span class="live-dot"></span>
+      <span>Última chamada</span>
+    </div>
+
+    <h2 class="cta-final-title">
+      A 286/2026<br><em>já está em vigor</em>
+    </h2>
+
+    <div class="cta-final-text">
+      <p>
+        A Resolução publicada em março de 2026 <strong>não tem período de adaptação</strong>. A Vigilância Sanitária está autorizada a <strong>fiscalizar e autuar a partir da publicação</strong>. A próxima auditoria, o próximo processo e a próxima intercorrência grave podem acontecer antes de você terminar de ler esta página.
+      </p>
+      <p>
+        Se você opera <strong>HOF, implantes ou reabilitações de alto ticket</strong>, esta aula foi desenhada para você entender, ao vivo e diretamente do Dr. Pedro Feitosa, o que separa o consultório que sobrevive à nova regra do consultório que vai ser surpreendido por ela.
+      </p>
+    </div>
+
+    <div class="scarcity">
+      <span class="scarcity-dot"></span>
+      Sala fechada · Vagas limitadas
+    </div>
+
+    <div class="cta-wrap">
+      <a href="#" class="cta-button" role="button">
+        Reservar minha vaga — R$ 47
+        <span class="arrow">→</span>
+      </a>
+      <p class="cta-note">
+        Quarta-feira <strong>·</strong> 20h <strong>(Brasília)</strong> <strong>·</strong> Ao vivo <strong>·</strong> Sem replay
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================
+     AUTORIDADE · DR. PEDRO
+     ================================ -->
+<section class="authority">
+  <div class="authority-inner">
+
+    <div class="authority-photo-wrap">
+      <img class="authority-photo" src="data:image/jpeg;base64,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" alt="Dr. Pedro Feitosa — Cirurgião-Dentista">
+    </div>
+
+    <div class="authority-content">
+      <div class="authority-eyebrow">Quem conduz esta Masterclass</div>
+      <h2 class="authority-name">Dr. Pedro Feitosa</h2>
+      <div class="authority-role">Cirurgião-Dentista · 31 anos de atuação</div>
+      <p class="authority-bio">
+        <strong>Dr. Pedro Feitosa</strong>, Cirurgião-Dentista, especialista e mestre em <strong>Implantodontia</strong>, <strong>Harmonização Oro Facial</strong> e <strong>Cirurgião Buco Maxilo Facial</strong> com <strong>31 anos de atuação clínica e acadêmica</strong>. Professor e mentor de profissionais de saúde, especialista em transformar o conhecimento técnico em segurança de mercado. Palestrante em grandes congressos (como o <strong>CIOSP</strong>) e criador de protocolos de segurança que são referência na área.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================
+     FOOTER
+     ================================ -->
+<footer class="site-footer">
+  <div class="footer-brand">Odontologia Além da Boca</div>
+  <div class="footer-meta">© 2026 · Dr. Pedro Feitosa · Todos os direitos reservados</div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      e.preventDefault();
+      const t = document.querySelector(id);
+      if (t) t.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+</script>
+
+</body>
+</html>
