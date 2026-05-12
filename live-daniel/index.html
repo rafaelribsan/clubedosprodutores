@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live Inevitáveis · Hipnoterapia Neural® | Daniel Galvão</title>
+<title>Live Superação · Hipnoterapia Neural® | Daniel Galvão</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,12 +71,18 @@ strong{font-weight:700;color:var(--text)}
 /* DIVISOR (intro de bloco) */
 .slide.divisor{display:flex;align-items:center;justify-content:flex-start;text-align:left;padding:120px}
 .divisor-wrap{display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:center;width:100%}
+.divisor-wrap.with-art{grid-template-columns:auto 1fr auto;gap:60px}
 .divisor-num{font-family:'Bricolage Grotesque',sans-serif;font-size:340px;font-weight:800;color:var(--accent);line-height:.85;letter-spacing:-.05em;font-variation-settings:"opsz" 96;text-shadow:0 0 80px rgba(255,214,10,.3)}
 .divisor-content{display:flex;flex-direction:column;gap:28px}
 .divisor-eyebrow{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;font-weight:700}
 .divisor-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:120px;line-height:.95;letter-spacing:-.04em;color:var(--text);font-variation-settings:"opsz" 96}
 .divisor-sub{font-family:'Bricolage Grotesque',sans-serif;font-style:italic;font-weight:600;font-size:38px;line-height:1.3;color:var(--text-dim);max-width:1100px;padding-left:24px;border-left:3px solid var(--accent)}
 .divisor-sub em{color:var(--accent);font-style:normal;font-weight:700}
+
+/* CEREBRO TRINO (imagem PNG) */
+.trino-art{width:420px;height:420px;position:relative;filter:drop-shadow(0 0 40px rgba(255,214,10,.18))}
+.trino-art img{width:100%;height:100%;object-fit:contain;display:block}
+.trino-art::before{content:'';position:absolute;inset:-30px;background:radial-gradient(circle at center,rgba(255,214,10,.12) 0%,transparent 65%);pointer-events:none;z-index:-1}
 
 /* NPOINT (slides com lista — usado em "3 entregas", "3 fases", "credenciais", etc.) */
 .npoint-grid{display:grid;grid-template-columns:340px 1fr;gap:80px;height:100%;align-items:center}
@@ -147,6 +153,8 @@ strong{font-weight:700;color:var(--text)}
 .preco-value::after{content:'';position:absolute;inset:-60px;background:radial-gradient(ellipse,rgba(255,214,10,.25),transparent 60%);z-index:-1;pointer-events:none}
 .preco-rs{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:120px;color:var(--text);line-height:.9;margin-top:30px;font-variation-settings:"opsz" 96}
 .preco-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:340px;color:var(--accent);letter-spacing:-.04em;line-height:.85;font-variation-settings:"opsz" 96;text-shadow:0 0 80px rgba(255,214,10,.45)}
+.preco-installments-lead{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:64px;color:var(--text-dim);letter-spacing:-.02em;line-height:.9;margin-top:60px;align-self:flex-start;margin-right:8px;font-variation-settings:"opsz" 48}
+.preco-cents{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:120px;color:var(--text);letter-spacing:-.02em;line-height:.9;margin-top:30px;font-variation-settings:"opsz" 96;align-self:flex-start}
 .preco-installments{font-family:'JetBrains Mono',monospace;font-size:38px;color:var(--text);font-weight:500;letter-spacing:.02em;margin-top:18px}
 .preco-installments strong{color:var(--accent);font-weight:700}
 .preco-cta{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:20px}
@@ -186,7 +194,7 @@ strong{font-weight:700;color:var(--text)}
     <div class="capa-left">
       <div class="capa-mark">
         <div class="capa-mark-num">LIVE</div>
-        <div class="capa-mark-label">Inevitáveis</div>
+        <div class="capa-mark-label">Superação</div>
         <div class="capa-mark-sub">12.05 · 19h</div>
       </div>
     </div>
@@ -205,7 +213,7 @@ strong{font-weight:700;color:var(--text)}
   <div class="slide-tag"><span>ABERTURA</span> · O QUE TROUXE VOCÊ ATÉ AQUI</div>
   <div class="statement-wrap">
     <div class="statement-eyebrow">Antes da gente começar</div>
-    <h2 class="statement-text">Em 5 meses,<br>mais de <em>115 áudios.</em></h2>
+    <h2 class="statement-text">Em 5 meses,<br>mais de <em>135 áudios.</em></h2>
     <p class="statement-foot">Eu te entreguei tudo que esse formato permite. <strong>Reflexão. Consciência. Espelho.</strong><br>Hoje eu vou te mostrar o que existe por trás.</p>
   </div>
   <div class="slide-counter">02 / 22</div>
@@ -227,11 +235,14 @@ strong{font-weight:700;color:var(--text)}
 <!-- SLIDE 04 · DIVISOR DIAGNÓSTICO -->
 <div class="slide divisor">
   <div class="slide-tag"><span>BLOCO 01</span> · DIAGNÓSTICO</div>
-  <div class="divisor-wrap">
-    <div class="divisor-num">01</div>
+  <div class="divisor-wrap with-art">
+    <div class="divisor-num" style="font-size:280px;">01</div>
     <div class="divisor-content">
       <div class="divisor-eyebrow">// Diagnóstico</div>
-      <h2 class="divisor-title">Onde a mente<br><em style="color:var(--accent);">trava</em> — e por quê.</h2>
+      <h2 class="divisor-title" style="font-size:96px;">Onde a mente<br><em style="color:var(--accent);">trava</em> — e por quê.</h2>
+    </div>
+    <div class="trino-art">
+      <img src="./img/cerebro-trino.png" alt="Cérebro Trino — Neocórtex, Sistema Límbico, Reptiliano">
     </div>
   </div>
   <div class="slide-counter">04 / 22</div>
@@ -287,11 +298,14 @@ strong{font-weight:700;color:var(--text)}
 <!-- SLIDE 09 · DIVISOR A TESE -->
 <div class="slide divisor">
   <div class="slide-tag"><span>BLOCO 02</span> · A TESE</div>
-  <div class="divisor-wrap">
-    <div class="divisor-num">02</div>
+  <div class="divisor-wrap with-art">
+    <div class="divisor-num" style="font-size:280px;">02</div>
     <div class="divisor-content">
       <div class="divisor-eyebrow">// A tese</div>
-      <h2 class="divisor-title">Entender não é<br>o mesmo que <em style="color:var(--accent);">mudar</em>.</h2>
+      <h2 class="divisor-title" style="font-size:96px;">Entender não é<br>o mesmo que <em style="color:var(--accent);">mudar</em>.</h2>
+    </div>
+    <div class="trino-art">
+      <img src="./img/cerebro-trino.png" alt="Cérebro Trino — Neocórtex, Sistema Límbico, Reptiliano">
     </div>
   </div>
   <div class="slide-counter">09 / 22</div>
@@ -335,7 +349,7 @@ strong{font-weight:700;color:var(--text)}
     <div class="divisor-content">
       <div class="divisor-eyebrow">// O método</div>
       <h2 class="divisor-title">3 fases.<br>1 ciclo de <em style="color:var(--accent);">resolução rápida</em>.</h2>
-      <p class="divisor-sub">Diferente da terapia comum: <em>até 4 encontros</em>, com resultados perceptíveis já nas primeiras sessões.</p>
+      <p class="divisor-sub">Diferente da terapia comum: <em>até 3 encontros</em>, com resultados perceptíveis já nas primeiras sessões.</p>
     </div>
   </div>
   <div class="slide-counter">13 / 22</div>
@@ -388,7 +402,7 @@ strong{font-weight:700;color:var(--text)}
       <h3 class="compare-title">O caminho direto.</h3>
       <p class="compare-sub">Acesso ao nível que a lógica não alcança.</p>
       <ul class="compare-list">
-        <li><strong>Ciclo curto</strong> — até 4 encontros</li>
+        <li><strong>Ciclo curto</strong> — até 3 encontros</li>
         <li><strong>Acesso à raiz</strong> — não ao sintoma</li>
         <li><strong>Resultados</strong> já nas primeiras sessões</li>
         <li><strong>Fim da guerra interna</strong></li>
@@ -451,7 +465,7 @@ strong{font-weight:700;color:var(--text)}
 <div class="slide" style="display:flex;flex-direction:column;justify-content:center;">
   <div class="slide-tag"><span>BLOCO 05</span> · O QUE ESTÁ INCLUÍDO</div>
   <div class="eyebrow">// Tratamento em Hipnoterapia Neural®</div>
-  <h2 class="title-md" style="max-width:1500px;margin-bottom:24px;">Ciclo de até <em>4 encontros</em><br>individuais comigo.</h2>
+  <h2 class="title-md" style="max-width:1500px;margin-bottom:24px;"><em>4 fases</em> nos três<br>encontros individuais comigo.</h2>
   <div class="incluso-grid">
     <div class="incluso-item">
       <div class="incluso-num">01</div>
@@ -496,12 +510,14 @@ strong{font-weight:700;color:var(--text)}
   <div class="slide-tag"><span>BLOCO 05</span> · O INVESTIMENTO</div>
   <div class="preco-anchor">Não custa <s>anos de terapia de fala</s>. Não custa <s>anos de medicação</s>.</div>
   <div class="preco-center">
-    <div class="preco-label">Valor Promocional · Live Inevitáveis</div>
+    <div class="preco-label">Valor Promocional · Live Superação</div>
     <div class="preco-value">
+      <span class="preco-installments-lead">10x de</span>
       <span class="preco-rs">R$</span>
-      <span class="preco-num">1.800</span>
+      <span class="preco-num">180</span>
+      <span class="preco-cents">,00</span>
     </div>
-    <div class="preco-installments">ou <strong>parcelado</strong> no cartão</div>
+    <div class="preco-installments">ou <strong>à vista no cartão</strong> com desconto</div>
   </div>
   <div class="preco-cta">
     <div class="preco-cta-label">Condição Especial · Apenas para os 30 Primeiros</div>
