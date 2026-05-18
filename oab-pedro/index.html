@@ -234,9 +234,9 @@ strong{font-weight:700;color:var(--text)}
 .headline{
   font-family:var(--font-display);
   font-weight:800;
-  font-size:clamp(30px,7.6vw,46px);
-  line-height:1.04;
-  letter-spacing:-.035em;
+  font-size:clamp(24px,6.2vw,36px);
+  line-height:1.08;
+  letter-spacing:-.03em;
   color:var(--text);
   font-variation-settings:"opsz" 96;
   margin-bottom:22px;
@@ -491,6 +491,74 @@ strong{font-weight:700;color:var(--text)}
 .bullet-body strong{color:var(--text);font-weight:700}
 
 /* ================================
+   SESSION TAGS · ETIQUETAS
+   ================================ */
+.session-tag{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:5px 11px;
+  border-radius:3px;
+  background:rgba(176,38,255,.10);
+  border:1px solid rgba(176,38,255,.35);
+  color:var(--accent);
+  margin-bottom:18px;
+}
+.session-tag-danger{
+  background:rgba(255,59,48,.10);
+  border:1px solid rgba(255,59,48,.30);
+  color:#ff6e64;
+}
+
+.danger-em{
+  font-style:normal;
+  color:var(--danger);
+  font-weight:800;
+}
+
+/* ================================
+   SEÇÃO · CONTEXTO / ALERTA
+   ================================ */
+.context-alert{
+  padding:64px 20px 48px;
+  border-top:1px solid var(--border);
+  background:linear-gradient(180deg,rgba(255,59,48,.05),transparent 70%);
+  position:relative;
+}
+.context-alert::before{
+  content:'';
+  position:absolute;
+  top:-1px;
+  left:50%;
+  transform:translateX(-50%);
+  width:60%;
+  max-width:420px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,59,48,.55),transparent);
+  opacity:.6;
+}
+.context-inner{
+  max-width:680px;
+  margin:0 auto;
+}
+.context-body{
+  margin-top:28px;
+  font-family:var(--font-body);
+  font-size:15.5px;
+  line-height:1.7;
+  color:var(--text-dim);
+}
+.context-body p + p{margin-top:18px}
+.context-body strong{color:var(--text);font-weight:700}
+.context-body .pull{
+  color:var(--text);
+  font-weight:600;
+}
+
+/* ================================
    SEÇÃO · DOIS CAMINHOS (centralizado + cards verticais)
    ================================ */
 .paths{
@@ -714,8 +782,10 @@ strong{font-weight:700;color:var(--text)}
 }
 .authority-photo{
   width:100%;
-  aspect-ratio:4 / 5;
+  aspect-ratio:2 / 3;
   object-fit:cover;
+  object-position:center top;
+  background:var(--bg-2);
   border-radius:6px;
   border:1px solid var(--border);
   display:block;
@@ -779,6 +849,14 @@ strong{font-weight:700;color:var(--text)}
   text-align:center;
   background:var(--bg-2);
 }
+.footer-logo{
+  width:54px;
+  height:auto;
+  margin:0 auto 14px;
+  display:block;
+  opacity:.85;
+  filter:drop-shadow(0 0 8px rgba(176,38,255,.18));
+}
 .footer-brand{
   font-family:var(--font-mono);
   font-size:10px;
@@ -806,7 +884,7 @@ strong{font-weight:700;color:var(--text)}
   .hero-inner, .discover-inner, .cta-final-inner, .paths-head{max-width:760px}
 
   .badge{font-size:11.5px;padding:8px 16px 8px 14px}
-  .headline{font-size:clamp(38px,5.4vw,54px)}
+  .headline{font-size:clamp(30px,4.4vw,44px)}
   .subheadline{font-size:18px;padding-left:20px}
 
   .event-rules{
@@ -834,6 +912,9 @@ strong{font-weight:700;color:var(--text)}
   .discover{padding:96px 32px 56px}
   .paths{padding:96px 32px 64px}
   .section-title{font-size:clamp(34px,4.4vw,46px)}
+
+  .context-alert{padding:88px 32px 72px}
+  .context-body{font-size:17px}
 
   .bullets{gap:16px}
   .bullet{padding:28px 28px 26px}
@@ -866,7 +947,7 @@ strong{font-weight:700;color:var(--text)}
 }
 
 @media (min-width: 980px){
-  .headline{font-size:58px;line-height:1.02}
+  .headline{font-size:46px;line-height:1.06}
   .subheadline{font-size:19px}
   .section-title{font-size:50px}
   .bullet-title{font-size:24px}
@@ -948,11 +1029,11 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
     <div class="eyebrow anim d2">Masterclass Ao Vivo</div>
 
     <h1 class="headline anim d2">
-      Os 3 pontos cegos que a <em>Resolução CFO 286/2026</em> acabou de criar para quem opera <em>HOF</em> e <em>implantes</em>.
+      Os 3 pontos cegos da <em>nova especialidade (CEOF)</em> e da <em>RDC 1002/2025</em> que colocam em risco quem opera <em>HOF</em> e <em>implantes</em>.
     </h1>
 
     <p class="subheadline anim d3">
-      <em>68%</em> dos cirurgiões-dentistas condenados nos tribunais brasileiros tinham <em>técnica impecável</em>: como se adaptar à nova <em>Resolução CFO 286/2026</em> sem expor o seu <em>CRO</em>, o seu <em>patrimônio</em> e a sua <em>clínica</em>.
+      <em>68%</em> dos cirurgiões-dentistas condenados nos tribunais tinham <em>técnica impecável</em>. Descubra como adaptar sua clínica à <em>nova realidade regulatória de 2026</em> sem expor seu <em>CRO</em>, seu <em>patrimônio</em> e sua <em>liberdade profissional</em>.
     </p>
 
     <div class="event-rules anim d4">
@@ -1018,15 +1099,46 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
 </main>
 
 <!-- ================================
+     SEÇÃO · CONTEXTO / O QUE MUDOU (NOVA · Sessão 01)
+     ================================ -->
+<section class="context-alert">
+  <div class="context-inner">
+
+    <div class="session-tag session-tag-danger">
+      O Alerta
+    </div>
+
+    <div class="eyebrow">A nova realidade já está vigente</div>
+
+    <h2 class="section-title">
+      O que mudou e por que <em class="danger-em">você está em perigo</em>?
+    </h2>
+
+    <div class="context-body">
+      <p>
+        Muitos acreditam que a <strong>Resolução CFO 286/2026</strong> é "apenas" a criação de uma nova especialidade (CEOF). O erro fatal é ignorar que ela, somada à nova <strong>RDC 1002/2025</strong>, redefiniu o que a Vigilância Sanitária e a Justiça esperam de um consultório de HOF e Implante.
+      </p>
+      <p class="pull">
+        A regra do jogo mudou enquanto você operava. <strong>O que era "boa prática" ontem, hoje pode ser motivo de interdição imediata.</strong>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================
      SEÇÃO · O QUE VOCÊ VAI DESCOBRIR
      ================================ -->
 <section class="discover">
   <div class="discover-inner">
 
     <div class="section-head">
+      <div class="session-tag">
+        Os 3 Pontos Cegos
+      </div>
       <div class="eyebrow">O que ninguém te contou ainda</div>
       <h2 class="section-title">
-        Na Masterclass você vai resolver <em>os 3 pontos cegos</em>:
+        Na Masterclass o Dr. Pedro Feitosa vai revelar <em>os 3 pontos cegos</em> que o mercado ainda não enxergou:
       </h2>
     </div>
 
@@ -1036,11 +1148,11 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
         <div class="bullet-head">
           <div class="bullet-num">01</div>
           <h3 class="bullet-title">
-            O <em>Ponto Cego</em> da Estrutura
+            O <em>Ponto Cego</em> da Estrutura <span style="color:var(--text-muted);font-weight:600;font-size:.78em;letter-spacing:-.01em">(RDC 1002/2025)</span>
           </h3>
         </div>
         <p class="bullet-body">
-          Por que o problema das salas de HOF <strong>não está em ter ou não 12m²</strong> — está em uma exigência da Resolução 286/2026 que passou despercebida na maioria das leituras técnicas, e que basta para um <strong>fiscal da Vigilância Sanitária interditar o seu consultório em minutos</strong>.
+          Por que o problema das salas de HOF <strong>não está apenas na metragem quadrada</strong> — está em uma exigência da nova <strong>RDC 1002/2025 sobre fluxos e processamento</strong> que passou despercebida, e que basta para um <strong>fiscal da Vigilância Sanitária interditar seu consultório em minutos</strong>.
         </p>
       </article>
 
@@ -1048,11 +1160,11 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
         <div class="bullet-head">
           <div class="bullet-num">02</div>
           <h3 class="bullet-title">
-            O <em>Ponto Cego</em> dos Equipamentos
+            O <em>Ponto Cego</em> dos Equipamentos e CEOF
           </h3>
         </div>
         <p class="bullet-body">
-          Por que ter desfibrilador, oxigênio e kit de emergência completos <strong>não significa que sua clínica está aprovada</strong> — e o que a Vigilância Sanitária realmente verifica nos <strong>primeiros minutos de uma fiscalização de CEOF</strong>, antes mesmo de pedir os documentos.
+          Por que ter desfibrilador e kit de emergência <strong>não garante que sua clínica esteja aprovada perante a nova especialidade</strong> — e o que a Vigilância realmente verifica nos <strong>primeiros minutos de uma fiscalização de CEOF e Implante</strong> antes mesmo de pedir documentos.
         </p>
       </article>
 
@@ -1060,11 +1172,11 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
         <div class="bullet-head">
           <div class="bullet-num">03</div>
           <h3 class="bullet-title">
-            O <em>Ponto Cego</em> da Documentação
+            O <em>Ponto Cego</em> da Documentação <span style="color:var(--text-muted);font-weight:600;font-size:.78em;letter-spacing:-.01em">— A Blindagem Forense</span>
           </h3>
         </div>
         <p class="bullet-body">
-          O motivo pelo qual <strong>prontuários considerados bem preenchidos</strong> por cirurgiões-dentistas experientes são a peça mais explorada pela acusação em <strong>68% das condenações</strong> — e a brecha forense que o advogado adversário procura antes de qualquer outra coisa num processo de cirurgia estética.
+          O motivo pelo qual <strong>prontuários considerados "bem preenchidos"</strong> por dentistas experientes são a peça mais explorada pela acusação em <strong>68% das condenações</strong> — e a brecha forense que a <strong>nova regulamentação abriu para processos de responsabilidade civil</strong>.
         </p>
       </article>
 
@@ -1082,7 +1194,7 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
     <div class="paths-head">
       <div class="eyebrow">Você tem dois caminhos a partir de agora</div>
       <h2 class="section-title">
-        A 286/2026 acaba de <em>dividir o mercado</em> em duas faixas.
+        A nova regulamentação acaba de <em>dividir o mercado</em> em duas faixas.
       </h2>
     </div>
 
@@ -1090,9 +1202,9 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
 
       <article class="path-card path-a">
         <span class="path-label">O risco da inércia</span>
-        <h3>O profissional que segue como sempre</h3>
+        <h3>O profissional que ignora as mudanças e segue como sempre</h3>
         <p>
-          O cirurgião-dentista que continuar operando da mesma forma vai descobrir, na primeira intercorrência grave após a 286/2026, que <strong>reputação não impede autuação</strong> e <strong>experiência não impede processo</strong>. <strong>A maioria dos profissionais que chega a esse ponto não volta ao mesmo nível de prática.</strong>
+          O cirurgião-dentista que <strong>ignorar o impacto da RDC 1002/2025</strong> vai descobrir, na primeira intercorrência, que <strong>reputação não impede autuação</strong> e que <strong>a lei não perdoa a desatualização</strong>. A maioria dos profissionais que chega a esse ponto <strong>não recupera o valor da sua marca</strong>.
         </p>
       </article>
 
@@ -1100,7 +1212,7 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
         <span class="path-label">A janela aberta</span>
         <h3>O profissional que se posiciona primeiro</h3>
         <p>
-          Há uma <strong>janela curta</strong> e ela vai fechar rápido. A oficialização da CEOF acaba de redesenhar quem pode operar HOF, implantes e reabilitações complexas com <strong>respaldo regulatório completo</strong>. <strong>Quem se posicionar primeiro não vai disputar esse mercado. Vai recebê-lo.</strong>
+          A oficialização da CEOF e as novas normas de segurança redesenharam quem pode operar <strong>procedimentos de alto ticket com respaldo total</strong>. Quem se adequar primeiro não vai apenas se proteger; <strong>vai dominar o mercado</strong> e se posiciona como <strong>autoridade acima de qualquer suspeita legal</strong>.
         </p>
       </article>
 
@@ -1121,15 +1233,12 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
     </div>
 
     <h2 class="cta-final-title">
-      A 286/2026<br><em>já está em vigor</em>
+      A <em>RDC 1002/2025</em> e a <em>286/2026</em><br>já estão em vigor
     </h2>
 
     <div class="cta-final-text">
       <p>
-        A Resolução publicada em março de 2026 <strong>não tem período de adaptação</strong>. A Vigilância Sanitária está autorizada a <strong>fiscalizar e autuar a partir da publicação</strong>. A próxima auditoria, o próximo processo e a próxima intercorrência grave podem acontecer antes de você terminar de ler esta página.
-      </p>
-      <p>
-        Se você opera <strong>HOF, implantes ou reabilitações de alto ticket</strong>, esta aula foi desenhada para você entender, ao vivo e diretamente do Dr. Pedro Feitosa, o que separa o consultório que sobrevive à nova regra do consultório que vai ser surpreendido por ela.
+        A <strong>Vigilância Sanitária já está autorizada a fiscalizar e autuar</strong> com base nas novas normas. O <strong>próximo processo ou fiscalização</strong> pode acontecer antes de você atualizar seus protocolos.
       </p>
     </div>
 
@@ -1158,15 +1267,18 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
   <div class="authority-inner">
 
     <div class="authority-photo-wrap">
-      <img class="authority-photo" src="data:image/jpeg;base64,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" alt="Dr. Pedro Feitosa — Cirurgião-Dentista">
+      <img class="authority-photo" src="./images/dr-pedro-feitosa.jpg" alt="Dr. Pedro Feitosa — Cirurgião-Dentista">
     </div>
 
     <div class="authority-content">
       <div class="authority-eyebrow">Quem conduz esta Masterclass</div>
       <h2 class="authority-name">Dr. Pedro Feitosa</h2>
-      <div class="authority-role">Cirurgião-Dentista · 31 anos de atuação</div>
+      <div class="authority-role">Cirurgião-Dentista · 31 anos de atuação clínica e acadêmica</div>
       <p class="authority-bio">
-        <strong>Dr. Pedro Feitosa</strong>, Cirurgião-Dentista, especialista e mestre em <strong>Implantodontia</strong>, <strong>Harmonização Oro Facial</strong> e <strong>Cirurgião Buco Maxilo Facial</strong> com <strong>31 anos de atuação clínica e acadêmica</strong>. Professor e mentor de profissionais de saúde, especialista em transformar o conhecimento técnico em segurança de mercado. Palestrante em grandes congressos (como o <strong>CIOSP</strong>) e criador de protocolos de segurança que são referência na área.
+        Especialista e mestre em <strong>Implantodontia</strong>, <strong>Harmonização Orofacial (HOF)</strong> e <strong>Cirurgia Bucomaxilofacial</strong>. Professor, mentor e palestrante em grandes congressos como o <strong>CIOSP</strong>, é a voz que traduz a complexidade das resoluções para a realidade do "mocho".
+      </p>
+      <p class="authority-bio" style="margin-top:14px">
+        Especialista em transformar <strong>conformidade técnica de excelência</strong> em <strong>segurança jurídica e autoridade de mercado</strong> através do método <strong>Odontologia Além da Boca</strong>.
       </p>
     </div>
 
@@ -1177,6 +1289,7 @@ a:focus-visible, button:focus-visible, .cta-button:focus-visible{
      FOOTER
      ================================ -->
 <footer class="site-footer">
+  <img class="footer-logo" src="./images/logo-oab-pf.png" alt="Odontologia Além da Boca">
   <div class="footer-brand">Odontologia Além da Boca</div>
   <div class="footer-meta">© 2026 · Dr. Pedro Feitosa · Todos os direitos reservados</div>
 </footer>
