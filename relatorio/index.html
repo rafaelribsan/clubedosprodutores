@@ -1,1 +1,1678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório Estratégico · FFv23 · DARK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #e7004c;
+  --pink-glow: rgba(231, 0, 76, 0.45);
+  --pink-soft: rgba(231, 0, 76, 0.12);
+  --pink-line: rgba(231, 0, 76, 0.28);
+  --bg-pure: #000000;
+  --bg-carbon: #0A0A0F;
+  --bg-card: #111114;
+  --bg-card-hover: #16161A;
+  --text: #F5F5F7;
+  --text-muted: #8B8B92;
+  --text-dim: #5A5A60;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --green: #00E29A;
+  --green-glow: rgba(0, 226, 154, 0.35);
+  --amber: #FFB020;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+::selection { background: var(--pink); color: white; }
+
+body {
+  background: var(--bg-pure);
+  color: var(--text);
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Scrollbar dark */
+::-webkit-scrollbar { width: 10px; background: var(--bg-pure); }
+::-webkit-scrollbar-thumb { background: var(--bg-card); border-left: 1px solid var(--pink); }
+::-webkit-scrollbar-thumb:hover { background: var(--pink); }
+
+/* === LOADING / PROGRESS BAR === */
+.progress {
+  position: fixed; top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--pink) 0%, transparent 100%);
+  z-index: 9999;
+  box-shadow: 0 0 12px var(--pink-glow);
+  transition: width 0.05s linear;
+  width: 0%;
+}
+
+/* === GRID BACKDROP === */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(231, 0, 76, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(231, 0, 76, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* === SECTION WRAPPERS — alternate bg === */
+.section-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 96px 0;
+  border-top: 1px solid var(--line);
+}
+.section-wrap.carbon { background: var(--bg-carbon); }
+.section-wrap.pure { background: var(--bg-pure); }
+.section-wrap:first-of-type { border-top: none; }
+
+.section-wrap::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+  box-shadow: 0 0 24px var(--pink-glow);
+}
+.section-wrap:first-of-type::before { display: none; }
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 56px;
+  position: relative;
+}
+
+/* === SCROLL ANIMATIONS === */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+.reveal-delay-5 { transition-delay: 0.4s; }
+
+/* === HEADER === */
+.masthead {
+  padding: 28px 56px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-pure);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.85);
+}
+
+.brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand .dot {
+  width: 10px; height: 10px;
+  background: var(--pink);
+  border-radius: 50%;
+  box-shadow: 0 0 18px var(--pink), 0 0 36px var(--pink-glow);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 12px var(--pink), 0 0 24px var(--pink-glow); }
+  50% { box-shadow: 0 0 24px var(--pink), 0 0 48px var(--pink-glow); }
+}
+
+.dateline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: right;
+}
+.dateline strong { color: var(--text); }
+
+/* === HERO === */
+.hero { padding: 80px 0 60px; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pink);
+  font-weight: 700;
+  margin-bottom: 28px;
+  text-shadow: 0 0 12px var(--pink-glow);
+}
+
+h1.title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: clamp(56px, 8vw, 112px);
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  margin-bottom: 32px;
+}
+h1.title .glow {
+  color: var(--pink);
+  text-shadow: 0 0 32px var(--pink-glow), 0 0 64px var(--pink-glow);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--text-muted);
+  max-width: 760px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.meta-strip {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line-strong);
+  background: var(--bg-card);
+}
+.meta-strip > div {
+  padding: 24px 26px;
+  border-right: 1px solid var(--line);
+  position: relative;
+  transition: background 0.3s;
+}
+.meta-strip > div:last-child { border-right: none; }
+.meta-strip > div:hover {
+  background: var(--bg-card-hover);
+}
+.meta-strip > div:hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--pink);
+  box-shadow: inset 0 0 24px var(--pink-soft);
+  pointer-events: none;
+}
+
+.meta-strip dt {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.meta-strip dd {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+/* === VEREDITO === */
+.verdict {
+  margin: 24px 0;
+  padding: 56px 48px;
+  background:
+    radial-gradient(ellipse at top left, var(--pink-soft) 0%, transparent 60%),
+    var(--bg-card);
+  border: 1px solid var(--pink-line);
+  position: relative;
+  overflow: hidden;
+}
+.verdict::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: -1px; right: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+  box-shadow: 0 0 16px var(--pink-glow);
+}
+
+.verdict::after {
+  content: '"';
+  position: absolute;
+  top: 8px; right: 32px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 200px;
+  line-height: 1;
+  color: var(--pink);
+  opacity: 0.18;
+  font-weight: 700;
+}
+
+.verdict-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.verdict-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.32;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  max-width: 900px;
+}
+.verdict-text strong {
+  color: var(--pink);
+  font-weight: 600;
+  text-shadow: 0 0 18px var(--pink-glow);
+}
+
+/* === SECTION TITLE === */
+h2.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 56px;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+h2.section-title .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pink);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px var(--pink-glow);
+}
+
+.section-desc {
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  max-width: 880px;
+  line-height: 1.5;
+}
+
+/* === KPI === */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.kpi {
+  padding: 28px 26px;
+  background: var(--bg-card);
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.kpi:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+.kpi:hover::before {
+  opacity: 1;
+}
+.kpi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--pink);
+  box-shadow:
+    0 0 24px var(--pink-soft),
+    inset 0 0 24px var(--pink-soft);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.kpi-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+
+.kpi-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.kpi-value .unit {
+  font-size: 18px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.kpi-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.kpi.glow-pink .kpi-value {
+  color: var(--pink);
+  text-shadow: 0 0 24px var(--pink-glow);
+}
+.kpi.glow-pink::before {
+  opacity: 0.7;
+  border-color: var(--pink);
+}
+
+.kpi.glow-green .kpi-value {
+  color: var(--green);
+  text-shadow: 0 0 22px var(--green-glow);
+}
+.kpi.glow-green::before {
+  opacity: 0.4;
+  border-color: var(--green);
+  box-shadow: 0 0 24px rgba(0, 226, 154, 0.2),
+              inset 0 0 20px rgba(0, 226, 154, 0.08);
+}
+
+.kpi.glow-amber .kpi-value {
+  color: var(--amber);
+  text-shadow: 0 0 18px rgba(255, 176, 32, 0.4);
+}
+
+/* === FUNIL === */
+.funnel-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  padding: 32px 40px;
+  position: relative;
+}
+
+.funnel-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 200px;
+  align-items: center;
+  gap: 28px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.funnel-row:last-child { border-bottom: none; }
+
+.funnel-stage {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.005em;
+}
+.funnel-stage .stage-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--pink);
+  font-weight: 700;
+  margin-right: 8px;
+  text-shadow: 0 0 8px var(--pink-glow);
+}
+
+.funnel-bar-wrap {
+  height: 44px;
+  background: rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.funnel-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  width: 0;
+  animation: grow-bar 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.3s;
+}
+@keyframes grow-bar {
+  to { width: var(--w); }
+}
+
+.funnel-bar.pink {
+  background: linear-gradient(90deg, var(--pink), #ff3370);
+  box-shadow: 0 0 28px var(--pink-glow), inset 0 0 18px rgba(255,255,255,0.12);
+}
+.funnel-bar.dim {
+  background: linear-gradient(90deg, #2a2a2e, #404048);
+  border-right: 2px solid var(--pink);
+}
+.funnel-bar.green {
+  background: linear-gradient(90deg, var(--green), #00ffb0);
+  box-shadow: 0 0 24px var(--green-glow);
+  color: #000;
+}
+.funnel-bar.danger {
+  background: linear-gradient(90deg, #8B2C1E, var(--pink));
+  box-shadow: 0 0 24px var(--pink-glow);
+}
+
+.funnel-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  text-align: right;
+}
+.funnel-meta .conv {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.funnel-meta .conv.danger { color: var(--pink); text-shadow: 0 0 12px var(--pink-glow); }
+.funnel-meta .conv.ok { color: var(--green); text-shadow: 0 0 10px var(--green-glow); }
+.funnel-meta .conv.warn { color: var(--amber); }
+.funnel-meta .conv-label {
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+/* === TABLE === */
+.fin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+}
+
+.fin-table thead th {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 700;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--pink-line);
+  background: rgba(231, 0, 76, 0.03);
+}
+
+.fin-table thead th.num, .fin-table tbody td.num, .fin-table tfoot td.num {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.fin-table tbody td {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+  color: var(--text);
+}
+
+.fin-table tbody tr {
+  transition: background 0.2s;
+}
+.fin-table tbody tr:hover {
+  background: rgba(231, 0, 76, 0.05);
+}
+
+.fin-table tbody tr.row-best {
+  background: rgba(0, 226, 154, 0.06);
+  border-left: 3px solid var(--green);
+}
+.fin-table tbody tr.row-worst {
+  background: rgba(231, 0, 76, 0.08);
+  border-left: 3px solid var(--pink);
+}
+
+.fin-table tfoot td {
+  padding: 18px;
+  border-top: 1px solid var(--pink-line);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+  background: rgba(231, 0, 76, 0.04);
+}
+.fin-table tfoot td.label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+}
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 9px;
+  border: 1px solid currentColor;
+}
+.pill.green { color: var(--green); box-shadow: 0 0 12px rgba(0, 226, 154, 0.3); }
+.pill.pink { color: var(--pink); box-shadow: 0 0 12px var(--pink-glow); }
+.pill.amber { color: var(--amber); }
+.pill.muted { color: var(--text-dim); }
+
+.tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  font-weight: 700;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+.tag.green {
+  background: var(--green);
+  color: #000;
+  box-shadow: 0 0 14px var(--green-glow);
+}
+.tag.pink {
+  background: var(--pink);
+  color: #FFF;
+  box-shadow: 0 0 14px var(--pink-glow);
+}
+.tag.dim {
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+}
+
+/* === CALLOUT === */
+.callout {
+  margin: 40px 0;
+  padding: 32px 36px;
+  background: linear-gradient(135deg, var(--pink-soft) 0%, transparent 80%);
+  border: 1px solid var(--pink-line);
+  border-left: 4px solid var(--pink);
+  position: relative;
+}
+.callout::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, var(--pink-glow), transparent 50%);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.callout.green {
+  border-color: var(--green);
+  border-left-color: var(--green);
+  background: linear-gradient(135deg, rgba(0, 226, 154, 0.08) 0%, transparent 80%);
+}
+
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pink);
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-shadow: 0 0 10px var(--pink-glow);
+}
+.callout.green .callout-label {
+  color: var(--green);
+  text-shadow: 0 0 10px var(--green-glow);
+}
+
+.callout-body {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+  color: var(--text);
+}
+.callout-body strong {
+  color: var(--pink);
+  font-weight: 600;
+  text-shadow: 0 0 12px var(--pink-glow);
+}
+.callout.green .callout-body strong {
+  color: var(--green);
+  text-shadow: 0 0 12px var(--green-glow);
+}
+
+/* === Q-ANALYSIS CARDS === */
+.q-block {
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  padding: 36px 40px;
+  margin-bottom: 36px;
+  position: relative;
+}
+.q-block::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 32px;
+  width: 80px; height: 2px;
+  background: var(--pink);
+  box-shadow: 0 0 16px var(--pink-glow);
+}
+
+.q-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--pink);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px var(--pink-glow);
+}
+
+.q-question {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.018em;
+  line-height: 1.25;
+  margin-bottom: 32px;
+  color: var(--text);
+  max-width: 880px;
+}
+
+.q-answer {
+  margin-bottom: 24px;
+  padding: 20px 24px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  transition: all 0.3s;
+  position: relative;
+}
+.q-answer:hover {
+  background: rgba(231, 0, 76, 0.04);
+  border-color: var(--pink-line);
+}
+.q-answer.winner {
+  background: linear-gradient(135deg, rgba(0, 226, 154, 0.08), transparent);
+  border-color: var(--green);
+}
+.q-answer.winner::after {
+  content: 'CONVERTE';
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--green);
+  text-shadow: 0 0 12px var(--green-glow);
+}
+.q-answer.danger {
+  background: linear-gradient(135deg, rgba(231, 0, 76, 0.08), transparent);
+  border-color: var(--pink);
+}
+.q-answer.danger::after {
+  content: 'QUEIMADO';
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--pink);
+  text-shadow: 0 0 12px var(--pink-glow);
+}
+
+.q-answer-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  margin-bottom: 14px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.q-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin-top: 14px;
+}
+.q-stats div {
+  font-family: 'JetBrains Mono', monospace;
+}
+.q-stats .stat-label {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.q-stats .stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  line-height: 1;
+}
+.q-stats .stat-value.green { color: var(--green); text-shadow: 0 0 10px var(--green-glow); }
+.q-stats .stat-value.pink { color: var(--pink); text-shadow: 0 0 10px var(--pink-glow); }
+.q-stats .stat-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* === ICP === */
+.icp-card {
+  background: linear-gradient(135deg, var(--pink-soft), transparent),
+              var(--bg-card);
+  border: 1px solid var(--pink);
+  padding: 48px;
+  margin-top: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.icp-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--pink-soft), transparent 60%);
+  pointer-events: none;
+}
+
+.icp-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--pink);
+  font-weight: 700;
+  margin-bottom: 14px;
+  text-shadow: 0 0 12px var(--pink-glow);
+  position: relative;
+}
+
+.icp-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 38px;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: 28px;
+  color: var(--text);
+  position: relative;
+  z-index: 1;
+}
+.icp-title em {
+  color: var(--pink);
+  font-style: italic;
+  text-shadow: 0 0 20px var(--pink-glow);
+}
+
+.icp-attrs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  position: relative;
+  z-index: 1;
+}
+.icp-attr {
+  border-top: 2px solid var(--pink);
+  padding-top: 18px;
+  box-shadow: 0 -2px 16px var(--pink-glow);
+}
+.icp-attr-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.icp-attr-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+/* === STATUS BAR === */
+.status-bar {
+  display: flex;
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  overflow: hidden;
+  margin-bottom: 36px;
+  box-shadow: inset 0 0 24px rgba(0,0,0,0.4);
+}
+.status-bar > div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 800;
+  transition: all 0.3s;
+  position: relative;
+}
+.status-bar > div:hover { transform: scaleY(1.05); }
+
+.status-legend {
+  display: grid;
+  gap: 12px;
+}
+.status-legend-item {
+  display: grid;
+  grid-template-columns: 18px 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.status-legend-item .swatch {
+  width: 18px; height: 18px;
+  border: 1px solid currentColor;
+}
+.status-legend-item .label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--text);
+}
+.status-legend-item .count {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text);
+}
+.status-legend-item .pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  width: 60px;
+  text-align: right;
+}
+
+/* === TWO COLS === */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+.col-block {
+  padding: 36px 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+}
+.col-block.danger {
+  border-left: 4px solid var(--pink);
+}
+.col-block.pos {
+  border-left: 4px solid var(--green);
+}
+.col-block h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 18px;
+  letter-spacing: -0.015em;
+}
+.col-block.danger h3 { color: var(--pink); text-shadow: 0 0 14px var(--pink-glow); }
+.col-block.pos h3 { color: var(--green); text-shadow: 0 0 14px var(--green-glow); }
+.col-block p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.col-block p strong { color: var(--text); font-weight: 600; }
+
+/* === ACTION === */
+.action-list {
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+}
+.action-item {
+  display: grid;
+  grid-template-columns: 96px 1fr 160px;
+  border-bottom: 1px solid var(--line);
+  padding: 32px 36px;
+  transition: background 0.3s;
+  position: relative;
+}
+.action-item:hover {
+  background: rgba(231, 0, 76, 0.03);
+}
+.action-item:hover .action-num {
+  text-shadow: 0 0 30px var(--pink-glow);
+}
+.action-item:last-child { border-bottom: none; }
+
+.action-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 0.9;
+  color: var(--pink);
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 18px var(--pink-glow);
+  transition: text-shadow 0.3s;
+}
+
+.action-body h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.action-body p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.action-body p strong { color: var(--text); font-weight: 600; }
+
+.action-priority {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.action-priority .level {
+  display: inline-block;
+  padding: 6px 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.priority-critical {
+  background: var(--pink);
+  color: #FFF;
+  box-shadow: 0 0 18px var(--pink-glow);
+}
+.priority-high {
+  background: var(--amber);
+  color: #000;
+}
+.priority-mid {
+  background: rgba(255,255,255,0.1);
+  color: var(--text);
+}
+.action-effort {
+  display: block;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+/* === FOOTER === */
+footer {
+  padding: 64px 56px 56px;
+  border-top: 1px solid var(--pink-line);
+  background: var(--bg-pure);
+  position: relative;
+}
+footer::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 320px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pink), transparent);
+  box-shadow: 0 0 24px var(--pink-glow);
+}
+
+.footer-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+}
+footer h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 14px;
+  font-weight: 700;
+  text-shadow: 0 0 10px var(--pink-glow);
+}
+footer p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.footer-signature {
+  max-width: 1240px;
+  margin: 48px auto 0;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .container { padding: 0 24px; }
+  .masthead { padding: 20px 24px; }
+  .section-wrap { padding: 60px 0; }
+  h1.title { font-size: 52px; }
+  h2.section-title { font-size: 38px; }
+  .meta-strip { grid-template-columns: repeat(2, 1fr); }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .funnel-row { grid-template-columns: 1fr; gap: 10px; }
+  .verdict { padding: 36px 28px; }
+  .verdict-text { font-size: 22px; }
+  .q-stats { grid-template-columns: repeat(2, 1fr); }
+  .icp-attrs { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .action-item { grid-template-columns: 60px 1fr; padding: 24px; }
+  .action-priority { grid-column: 2; text-align: left; margin-top: 12px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-signature { flex-direction: column; gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ========== HEADER ========== -->
+<header class="masthead">
+  <div class="brand"><div class="dot"></div>Relatório Estratégico · FFv23</div>
+  <div class="dateline">
+    Emitido em <strong>19 / 05 / 2026</strong><br>
+    Engenheiro de Dados · High Ticket
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<div class="section-wrap pure">
+  <div class="container">
+    <div class="hero">
+      <div class="eyebrow reveal">Funil de Sessão Estratégica · Meta Ads · 79 dias</div>
+      <h1 class="title reveal reveal-delay-1">A meta de receita <span class="glow">do meio</span><br>levou todas as<br>vendas pra casa.</h1>
+      <p class="subtitle reveal reveal-delay-2">Análise completa do funil de aquisição de sessões estratégicas — do clique no anúncio à venda fechada — com cruzamento das perguntas de qualificação, mapa de gargalos e plano de ação para religar o tráfego com responsabilidade.</p>
+
+      <dl class="meta-strip reveal reveal-delay-3">
+        <div><dt>Período</dt><dd>01/03 → 19/05/2026</dd></div>
+        <div><dt>Investimento</dt><dd>R$ 6.432,13</dd></div>
+        <div><dt>Receita realizada</dt><dd>R$ 46.380,00</dd></div>
+        <div><dt>ROAS</dt><dd>7,21×</dd></div>
+      </dl>
+    </div>
+
+    <div class="verdict reveal reveal-delay-4">
+      <div class="verdict-label">Veredito de uma linha</div>
+      <div class="verdict-text"><strong>ROAS 7,21×</strong> é saudável, mas <strong>2 das 3 vendas saíram do mesmo criativo</strong> e <strong>100% das vendas vieram do mesmo perfil de meta</strong>. Religar tráfego sem calibrar a qualificação na entrada significa pagar caro pelo lead errado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 1: KPIs ========== -->
+<div class="section-wrap carbon">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">01 ⁄ 08</span>Os números que importam</h2>
+    <p class="section-desc reveal reveal-delay-1">A leitura da operação em 12 métricas. As destacadas em rosa exigem atenção imediata, em verde estão dentro do esperado.</p>
+
+    <div class="kpi-grid reveal reveal-delay-2">
+      <div class="kpi"><div class="kpi-label">Gasto Total</div><div class="kpi-value">R$ 6.432<span class="unit">,13</span></div><div class="kpi-sub">79 dias · R$ 81 / dia</div></div>
+      <div class="kpi"><div class="kpi-label">Impressões</div><div class="kpi-value">70.553</div><div class="kpi-sub">CPM R$ 91,17</div></div>
+      <div class="kpi"><div class="kpi-label">Cliques no link</div><div class="kpi-value">660</div><div class="kpi-sub">CTR 0,94%</div></div>
+      <div class="kpi glow-green"><div class="kpi-label">CPC Realizado</div><div class="kpi-value">R$ 9,75</div><div class="kpi-sub">Dentro da meta high-ticket</div></div>
+
+      <div class="kpi"><div class="kpi-label">Leads gerados</div><div class="kpi-value">119</div><div class="kpi-sub">117 no CDP</div></div>
+      <div class="kpi"><div class="kpi-label">CPL</div><div class="kpi-value">R$ 54<span class="unit">,05</span></div><div class="kpi-sub">Razoável para o nicho</div></div>
+      <div class="kpi glow-green"><div class="kpi-label">Agendamentos</div><div class="kpi-value">56</div><div class="kpi-sub">47,1% dos leads</div></div>
+      <div class="kpi"><div class="kpi-label">Custo / Agendamento</div><div class="kpi-value">R$ 115</div><div class="kpi-sub">R$ 114,86 exato</div></div>
+
+      <div class="kpi glow-amber"><div class="kpi-label">Show-ups</div><div class="kpi-value">40</div><div class="kpi-sub">71,4% — abaixo de 80%</div></div>
+      <div class="kpi"><div class="kpi-label">CPR · Custo p/ Reunião</div><div class="kpi-value">R$ 161</div><div class="kpi-sub">R$ 160,80 exato</div></div>
+      <div class="kpi glow-pink"><div class="kpi-label">Show → Venda</div><div class="kpi-value">7,5%</div><div class="kpi-sub">3 vendas em 40 reuniões</div></div>
+      <div class="kpi glow-green"><div class="kpi-label">ROAS</div><div class="kpi-value">7,21<span class="unit">×</span></div><div class="kpi-sub">R$ 46.380 ÷ R$ 6.432</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 2: FUNIL ========== -->
+<div class="section-wrap pure">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">02 ⁄ 08</span>O funil etapa a etapa</h2>
+    <p class="section-desc reveal reveal-delay-1">Cada barra é proporcional à etapa anterior. Conversão alta no início, gargalo claro no fechamento.</p>
+
+    <div class="funnel-wrap reveal reveal-delay-2">
+      <div class="funnel-row">
+        <div class="funnel-stage"><span class="stage-num">01</span>Cliques no link</div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar pink" style="--w: 100%;">660</div></div>
+        <div class="funnel-meta"><span class="conv">100%</span><span class="conv-label">CPC R$ 9,75</span></div>
+      </div>
+
+      <div class="funnel-row">
+        <div class="funnel-stage"><span class="stage-num">02</span>Leads (formulário)</div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar dim" style="--w: 18.0%;">119</div></div>
+        <div class="funnel-meta"><span class="conv warn">18,0%</span><span class="conv-label">CPL R$ 54,05</span></div>
+      </div>
+
+      <div class="funnel-row">
+        <div class="funnel-stage"><span class="stage-num">03</span>Agendamentos (Cal.com)</div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar green" style="--w: 8.5%;">56</div></div>
+        <div class="funnel-meta"><span class="conv ok">47,1%</span><span class="conv-label">de lead → agend</span></div>
+      </div>
+
+      <div class="funnel-row">
+        <div class="funnel-stage"><span class="stage-num">04</span>Show-up (compareceu)</div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar dim" style="--w: 6.1%;">40</div></div>
+        <div class="funnel-meta"><span class="conv warn">71,4%</span><span class="conv-label">CPR R$ 160,80</span></div>
+      </div>
+
+      <div class="funnel-row">
+        <div class="funnel-stage"><span class="stage-num">05</span>Venda fechada</div>
+        <div class="funnel-bar-wrap"><div class="funnel-bar danger" style="--w: 1.0%;">3</div></div>
+        <div class="funnel-meta"><span class="conv danger">7,5%</span><span class="conv-label">CAC R$ 2.144,04</span></div>
+      </div>
+    </div>
+
+    <div class="callout reveal reveal-delay-3">
+      <div class="callout-label">⚠ Gargalo crítico identificado</div>
+      <div class="callout-body">O funil é <strong>eficiente até o agendamento</strong> (47,1% lead→agend é excelente para high-ticket), mas <strong>quebra no fechamento</strong>: apenas 7,5% das reuniões viram venda. O problema não é tráfego — é qualificação. E veremos na Seção 04 que <strong>está tudo nas respostas do próprio formulário</strong>.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 3: CAMPANHA ========== -->
+<div class="section-wrap carbon">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">03 ⁄ 08</span>Performance por campanha</h2>
+    <p class="section-desc reveal reveal-delay-1">Ordenadas por gasto. A campanha BR exceto Sul sozinha respondeu por <strong style="color: var(--pink)">79% da receita.</strong></p>
+
+    <table class="fin-table reveal reveal-delay-2">
+      <thead>
+        <tr>
+          <th style="width:32%">Campanha</th>
+          <th class="num">Gasto</th><th class="num">Leads</th><th class="num">CPL</th>
+          <th class="num">Agend.</th><th class="num">Vendas</th><th class="num">Receita</th><th class="num">ROAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-best"><td><strong>[28/03] BR exceto Sul</strong> · MaxLead <span class="tag green">Campeã</span></td><td class="num">R$ 1.765,84</td><td class="num">49</td><td class="num">R$ 36,04</td><td class="num">19</td><td class="num">2</td><td class="num"><strong>R$ 36.390</strong></td><td class="num"><strong>20,6×</strong></td></tr>
+        <tr><td>[01/03] FFv23 · CostCap</td><td class="num">R$ 754,74</td><td class="num">9</td><td class="num">R$ 83,86</td><td class="num">4</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr class="row-worst"><td>[24/03] Sul · CostCap <span class="tag pink">Drena</span></td><td class="num">R$ 729,40</td><td class="num">15</td><td class="num">R$ 48,63</td><td class="num">3</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr><td>[27/03] Sul · MaxLead</td><td class="num">R$ 658,36</td><td class="num">9</td><td class="num">R$ 73,15</td><td class="num">2</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr><td>[21/04] Plugamos</td><td class="num">R$ 410,15</td><td class="num">9</td><td class="num">R$ 45,57</td><td class="num">2</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr><td>[24/03] São Paulo</td><td class="num">R$ 377,05</td><td class="num">3</td><td class="num">R$ 125,68</td><td class="num">1</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr><td>[12/03] Aberto · CostCap</td><td class="num">R$ 374,31</td><td class="num">4</td><td class="num">R$ 93,58</td><td class="num">2</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr class="row-best"><td><strong>[12/03] Semelhante</strong> · BidCap <span class="tag green">LAL ouro</span></td><td class="num">R$ 364,36</td><td class="num">7</td><td class="num">R$ 52,05</td><td class="num">2</td><td class="num">1</td><td class="num"><strong>R$ 9.990</strong></td><td class="num"><strong>27,4×</strong></td></tr>
+        <tr><td>[21/04] Autoridade</td><td class="num">R$ 288,21</td><td class="num">5</td><td class="num">R$ 57,64</td><td class="num">3</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+        <tr><td>Demais campanhas (5)</td><td class="num">R$ 709,71</td><td class="num">9</td><td class="num">R$ 78,86</td><td class="num">4</td><td class="num">0</td><td class="num">—</td><td class="num">0,0×</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td class="label">Total Consolidado</td><td class="num">R$ 6.432,13</td><td class="num">119</td><td class="num">R$ 54,05</td><td class="num">56</td><td class="num">3</td><td class="num">R$ 46.380</td><td class="num">7,21×</td></tr>
+      </tfoot>
+    </table>
+
+    <div class="callout green reveal reveal-delay-3">
+      <div class="callout-label">↑ Sinal positivo</div>
+      <div class="callout-body">A campanha de <strong>Públicos Semelhantes (BidCap)</strong> entregou o melhor ROAS unitário (27,4×) com apenas R$ 364. <strong>Sinal claro para escalar testes de LAL</strong> antes de empurrar volume na campanha mãe.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 4: ANÁLISE DE QUALIFICAÇÃO (NOVA) ========== -->
+<div class="section-wrap pure">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">04 ⁄ 08</span>O DNA do cliente que compra</h2>
+    <p class="section-desc reveal reveal-delay-1">Cruzamento das 117 respostas das perguntas de qualificação do formulário com o avanço de cada lead no funil. <strong style="color: var(--pink)">A descoberta é cirúrgica:</strong> o cliente ideal tem assinatura comum nas 3 perguntas — e ela contradiz o que o senso comum espera.</p>
+
+    <!-- Q4 -->
+    <div class="q-block reveal reveal-delay-2">
+      <div class="q-tag">Pergunta Q4 · 117 respostas</div>
+      <h3 class="q-question">"Qual é a sua meta de receita mensal para 2026?"</h3>
+
+      <div class="q-answer winner">
+        <div class="q-answer-label">"Entre 20 e 50 mil reais por mês é a minha meta"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">40</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">18</div><div class="stat-pct">45,0%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">14</div><div class="stat-pct">77,8%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value green">3</div><div class="stat-pct">21,4% dos shows</div></div>
+          <div><div class="stat-label">Receita</div><div class="stat-value green">R$ 46k</div></div>
+        </div>
+      </div>
+
+      <div class="q-answer danger">
+        <div class="q-answer-label">"Só faz sentido se for mais de 50 mil reais por mês"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">41</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">15</div><div class="stat-pct">36,6%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">11</div><div class="stat-pct">73,3%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value pink">0</div><div class="stat-pct">0%</div></div>
+          <div><div class="stat-label">Receita</div><div class="stat-value pink">R$ 0</div></div>
+        </div>
+      </div>
+
+      <div class="q-answer danger">
+        <div class="q-answer-label">"20 mil reais por mês está bom para começar"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">36</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">8</div><div class="stat-pct">22,2%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">4</div><div class="stat-pct">50,0%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value pink">0</div><div class="stat-pct">0%</div></div>
+          <div><div class="stat-label">Receita</div><div class="stat-value pink">R$ 0</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🎯 Insight Q4 — A meta do meio é o sweet spot</div>
+      <div class="callout-body">Os <strong>aspiracionais (+50k)</strong> agendam e comparecem, mas <strong>não compram</strong> — soam ambiciosos no formulário, mas não têm tração real. Os <strong>iniciantes (20k começar)</strong> nem chegam à reunião. <strong>Quem cravou 20–50k</strong> é o único grupo com tração: 100% das vendas saíram daqui. Esse é o seu cliente real.</div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="q-block reveal">
+      <div class="q-tag">Pergunta Q5 · 117 respostas</div>
+      <h3 class="q-question">"Qual faixa de investimento está dentro da sua realidade hoje?"</h3>
+
+      <div class="q-answer winner">
+        <div class="q-answer-label">"Consigo investir até R$ 8.000"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">47</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">21</div><div class="stat-pct">44,7%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">18</div><div class="stat-pct">85,7%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value green">2</div><div class="stat-pct">11,1%</div></div>
+          <div><div class="stat-label">Receita</div><div class="stat-value green">R$ 36k</div></div>
+        </div>
+      </div>
+
+      <div class="q-answer danger">
+        <div class="q-answer-label">"Tendo retorno, investimento não é problema"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">65</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">18</div><div class="stat-pct">27,7%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">10</div><div class="stat-pct">55,6%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value">1</div><div class="stat-pct">10,0%</div></div>
+          <div><div class="stat-label">Receita</div><div class="stat-value">R$ 10k</div></div>
+        </div>
+      </div>
+
+      <div class="q-answer">
+        <div class="q-answer-label">"Entre 8k e 15k é o meu limite"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">5</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">2</div><div class="stat-pct">40,0%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">1</div><div class="stat-pct">50,0%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value">0</div><div class="stat-pct">amostra baixa</div></div>
+          <div><div class="stat-label">Receita</div><div class="stat-value">R$ 0</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🎯 Insight Q5 — A resposta vaga é cilada</div>
+      <div class="callout-body">"Tendo retorno, não é problema" é a <strong>resposta mais escolhida (65 leads — 56% do total)</strong>, mas tem a <strong>pior taxa de conversão e o pior show-up (55,6%)</strong>. É a resposta evasiva do lead que não quer se comprometer. Já quem cravou <strong>"até 8k"</strong> apareceu mais (85,7% show-up) e <strong>converteu 3× mais</strong>. <strong>Honestidade no formulário = honestidade na call.</strong></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="q-block reveal">
+      <div class="q-tag">Pergunta Q2 · 117 respostas</div>
+      <h3 class="q-question">"Qual melhor descreve o seu perfil?"</h3>
+
+      <div class="q-answer winner">
+        <div class="q-answer-label">"Profissional Liberal (médico, advogado, etc.)"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">16</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">7</div><div class="stat-pct">43,8%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">3</div><div class="stat-pct">42,9%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value green">1</div><div class="stat-pct">33,3% dos shows</div></div>
+          <div><div class="stat-label">Lead→Venda</div><div class="stat-value green">6,25%</div></div>
+        </div>
+      </div>
+
+      <div class="q-answer winner">
+        <div class="q-answer-label">"Especialista — tenho anos de experiência profissional"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">64</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">19</div><div class="stat-pct">29,7%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">15</div><div class="stat-pct">78,9%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value green">2</div><div class="stat-pct">13,3% dos shows</div></div>
+          <div><div class="stat-label">Lead→Venda</div><div class="stat-value">3,12%</div></div>
+        </div>
+      </div>
+
+      <div class="q-answer danger">
+        <div class="q-answer-label">"Mentor/Consultor — já vendo meu conhecimento"</div>
+        <div class="q-stats">
+          <div><div class="stat-label">Leads</div><div class="stat-value">37</div></div>
+          <div><div class="stat-label">Agendamentos</div><div class="stat-value">15</div><div class="stat-pct">40,5%</div></div>
+          <div><div class="stat-label">Show-ups</div><div class="stat-value">11</div><div class="stat-pct">73,3%</div></div>
+          <div><div class="stat-label">Vendas</div><div class="stat-value pink">0</div><div class="stat-pct">0%</div></div>
+          <div><div class="stat-label">Lead→Venda</div><div class="stat-value pink">0%</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <div class="callout-label">🎯 Insight Q2 — Mentor/Consultor é tempo perdido</div>
+      <div class="callout-body">O perfil <strong>Mentor/Consultor é a maior armadilha</strong> da operação: 37 leads, agenda muito (40,5%), aparece na call (73,3%) e <strong>NUNCA compra</strong>. Provavelmente são pares profissionais querendo "dar uma olhada no método" — não clientes. Já <strong>Profissional Liberal</strong>, mesmo com baixo show-up, tem a maior taxa de conversão entre os que aparecem (33,3%). E <strong>Especialistas</strong> são a base sólida — comparecem mais e trouxeram 2 das 3 vendas.</div>
+    </div>
+
+    <!-- ICP -->
+    <div class="icp-card reveal">
+      <div class="icp-label">DNA do cliente ideal · extraído dos 3 vendedores reais</div>
+      <h3 class="icp-title">Quem comprou tem <em>assinatura</em> nas três perguntas.</h3>
+      <div class="icp-attrs">
+        <div class="icp-attr">
+          <div class="icp-attr-label">Q4 · Meta de receita</div>
+          <div class="icp-attr-value">Entre 20 e 50 mil/mês<br><span style="color: var(--text-muted); font-size: 14px;">3 de 3 vendas (100%)</span></div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-label">Q5 · Investimento</div>
+          <div class="icp-attr-value">Até R$ 8.000<br><span style="color: var(--text-muted); font-size: 14px;">2 de 3 vendas (67%)</span></div>
+        </div>
+        <div class="icp-attr">
+          <div class="icp-attr-label">Q2 · Perfil</div>
+          <div class="icp-attr-value">Especialista ou Liberal<br><span style="color: var(--text-muted); font-size: 14px;">3 de 3 vendas (100%)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 5: CRIATIVOS ========== -->
+<div class="section-wrap carbon">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">05 ⁄ 08</span>O ranking dos criativos</h2>
+    <p class="section-desc reveal reveal-delay-1">Onde está realmente o resultado da operação. <strong>Tentante (Borges)</strong> é a galinha dos ovos de ouro — e o ponto único de falha.</p>
+
+    <table class="fin-table reveal reveal-delay-2">
+      <thead>
+        <tr>
+          <th>Criativo</th><th class="num">Agend.</th><th class="num">Show-up</th>
+          <th class="num">Vendas</th><th class="num">Receita</th><th class="num">Pipeline*</th><th class="num">Veredito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-best"><td><strong>Tentante (Borges)</strong> <span class="tag green">Top performer</span></td><td class="num">21</td><td class="num">14 · 67%</td><td class="num">2</td><td class="num"><strong>R$ 36.390</strong></td><td class="num">8</td><td class="num"><span class="pill green">Escalar</span></td></tr>
+        <tr><td>010 Catedral (para quem)</td><td class="num">11</td><td class="num">10 · 91%</td><td class="num">0</td><td class="num">—</td><td class="num">6</td><td class="num"><span class="pill amber">Investigar</span></td></tr>
+        <tr><td>Plugamos (catedral)</td><td class="num">5</td><td class="num">3 · 60%</td><td class="num">1</td><td class="num">R$ 9.990</td><td class="num">2</td><td class="num"><span class="pill green">Manter</span></td></tr>
+        <tr><td>Plugamos (Cachoeira)</td><td class="num">2</td><td class="num">2 · 100%</td><td class="num">0</td><td class="num">—</td><td class="num">2</td><td class="num"><span class="pill muted">Aguardar</span></td></tr>
+        <tr class="row-worst"><td>Autoridade (Bike) <span class="tag pink">Show 33%</span></td><td class="num">3</td><td class="num">1 · 33%</td><td class="num">0</td><td class="num">—</td><td class="num">1</td><td class="num"><span class="pill pink">Pausar</span></td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td class="label">41 atribuídos com criativo</td><td class="num">41</td><td class="num">30 · 73%</td><td class="num">3</td><td class="num">R$ 46.380</td><td class="num">19</td><td class="num">—</td></tr>
+      </tfoot>
+    </table>
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-dim); margin-top: 12px;">* Pipeline = Follow-up + Contato Futuro · 15 dos 56 agendamentos não foram atribuídos a criativo (Aba 2 / reagendamentos resgatados)</p>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 6: STATUS ========== -->
+<div class="section-wrap pure">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">06 ⁄ 08</span>Onde estão os 56 agendados</h2>
+    <p class="section-desc reveal reveal-delay-1">Distribuição dos agendamentos pelo status comercial atual. <strong>46% do volume em pipeline ativo</strong> — receita potencial ainda não extraída.</p>
+
+    <div class="status-bar reveal reveal-delay-2">
+      <div style="width: 5.4%; background: var(--green); color: #000;">5,4%</div>
+      <div style="width: 7.1%; background: var(--amber); color: #000;">7,1%</div>
+      <div style="width: 39.3%; background: #C4843A; color: #FFF;">39,3%</div>
+      <div style="width: 23.2%; background: var(--pink); color: #FFF;">23,2%</div>
+      <div style="width: 25%; background: var(--text-dim); color: #FFF;">25,0%</div>
+    </div>
+
+    <div class="status-legend reveal reveal-delay-3">
+      <div class="status-legend-item"><div class="swatch" style="background: var(--green);"></div><div class="label">💰 Vendido</div><div class="count">3</div><div class="pct">5,4%</div></div>
+      <div class="status-legend-item"><div class="swatch" style="background: var(--amber);"></div><div class="label">🔄 Follow-up · negociação ativa</div><div class="count">4</div><div class="pct">7,1%</div></div>
+      <div class="status-legend-item"><div class="swatch" style="background: #C4843A;"></div><div class="label">🕐 Contato Futuro · volta em 30+ dias</div><div class="count">22</div><div class="pct">39,3%</div></div>
+      <div class="status-legend-item"><div class="swatch" style="background: var(--pink);"></div><div class="label">❌ Perdido · não vai fechar</div><div class="count">13</div><div class="pct">23,2%</div></div>
+      <div class="status-legend-item"><div class="swatch" style="background: var(--text-dim);"></div><div class="label">⚪ N/A · não compareceu</div><div class="count">14</div><div class="pct">25,0%</div></div>
+    </div>
+
+    <div class="two-col reveal" style="margin-top: 48px;">
+      <div class="col-block pos">
+        <h3>💎 Receita potencial em pipeline</h3>
+        <p><strong>26 leads quentes</strong> ainda em negociação ou contato futuro. Considerando ticket médio de <strong>R$ 15.460</strong>:</p>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 14px; margin: 18px 0; color: var(--text);">
+          @ 20% conv → <strong style="color: var(--green); font-size: 18px;">+ R$ 80.392</strong><br>
+          @ 30% conv → <strong style="color: var(--green); font-size: 18px;">+ R$ 120.588</strong><br>
+          @ 40% conv → <strong style="color: var(--green); font-size: 18px;">+ R$ 160.784</strong>
+        </p>
+        <p style="font-size: 13px;"><em>Sem gastar nada novo em tráfego.</em></p>
+      </div>
+      <div class="col-block danger">
+        <h3>🩸 Custo afundado</h3>
+        <p><strong>16 no-shows</strong> + <strong>13 reuniões perdidas</strong> = 29 reuniões sem retorno.</p>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 14px; margin: 18px 0; color: var(--text);">
+          No-show → <strong style="color: var(--pink);">R$ 1.838,40</strong><br>
+          Perdidos → <strong style="color: var(--pink);">R$ 1.493,70</strong><br>
+          <strong style="color: var(--pink); font-size: 18px;">Queimado: R$ 3.332 (52%)</strong>
+        </p>
+        <p style="font-size: 13px;"><em>Mais da metade do investimento</em> em reuniões sem fechamento nem pipeline ativo.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 7: DIAGNÓSTICO ========== -->
+<div class="section-wrap carbon">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">07 ⁄ 08</span>Diagnóstico estratégico</h2>
+    <p class="section-desc reveal reveal-delay-1">O que os números contam quando lidos como uma história única.</p>
+
+    <div class="two-col reveal reveal-delay-2">
+      <div class="col-block pos">
+        <h3>↑ O que está funcionando</h3>
+        <p><strong>1. Tráfego frio entrega.</strong> CTR 0,94% e CPC R$ 9,75 são saudáveis para high-ticket. Mídia não é problema.</p>
+        <p><strong>2. Lead → Agendamento de 47,1%</strong> é raro de ver. O formulário converte. A página agenda.</p>
+        <p><strong>3. Tentante (Borges) é um achado.</strong> 2 das 3 vendas, R$ 36 mil de receita. Ativo mais valioso da operação.</p>
+        <p><strong>4. O formulário tem oráculo escondido.</strong> Q4 = "20–50k" é o sinal mais forte do funil — 100% das vendas. Pode virar trigger automático.</p>
+        <p><strong>5. Pipeline robusto.</strong> 26 leads quentes valem até R$ 160k em receita potencial.</p>
+      </div>
+      <div class="col-block danger">
+        <h3>↓ O que está quebrado</h3>
+        <p><strong>1. Concentração de risco brutal.</strong> 1 criativo carrega 79% da receita. Se fadigar, a operação para.</p>
+        <p><strong>2. Show-up 71% é baixo.</strong> Benchmark high-ticket é 80–85%. Confirmação WhatsApp falhando.</p>
+        <p><strong>3. 7,5% show→venda é o gargalo real.</strong> Lead errado entrando na call OU oferta não fechando.</p>
+        <p><strong>4. Mentor/Consultor entope o funil.</strong> 37 leads, 15 reuniões, 0 vendas. Tempo da operação queimando.</p>
+        <p><strong>5. 13 perdidos sem reativação.</strong> Sem nutrição/remarketing. Receita evaporando.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SEÇÃO 8: PLANO DE AÇÃO ========== -->
+<div class="section-wrap pure">
+  <div class="container">
+    <h2 class="section-title reveal"><span class="num">08 ⁄ 08</span>Plano de ação antes de religar o tráfego</h2>
+    <p class="section-desc reveal reveal-delay-1">Sete movimentos ordenados por prioridade e impacto. Não escalar volume antes de fechar os pontos 1, 2 e 3.</p>
+
+    <div class="action-list reveal reveal-delay-2">
+      <div class="action-item">
+        <div class="action-num">01</div>
+        <div class="action-body">
+          <h3>Calibrar qualificação na entrada usando as respostas que já existem</h3>
+          <p>O formulário JÁ tem o oráculo: <strong>Q4 ("20–50k") + Q2 (Especialista ou Profissional Liberal)</strong> casam com 100% das vendas. <strong>Implementar:</strong> classificação automática de score por combinação de resposta (alto/médio/descartar), enviando para Cal.com apenas score alto. Mentor/Consultor pode entrar em fila de baixa prioridade ou nutrição.</p>
+          <p><strong>Impacto esperado:</strong> menos agendamentos no volume, mas show→venda dobrando ou triplicando (meta 15%+).</p>
+        </div>
+        <div class="action-priority"><div class="level priority-critical">Crítico</div><span class="action-effort">Esforço: médio<br>Prazo: 5 dias</span></div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">02</div>
+        <div class="action-body">
+          <h3>Diversificar o portfólio criativo — 3 novos no estilo Tentante</h3>
+          <p>Tentante (Borges) prova a tese mas é ponto único de falha. <strong>Brief:</strong> mesma estrutura narrativa (formato, hook, duração), variando atriz/ator, cenário e ângulo de dor. <strong>Meta:</strong> 3 variações no ar em 7 dias. <strong>Sucesso:</strong> ao menos 1 atingir CPL &lt; R$ 50 e show-up &gt; 70% em 14 dias.</p>
+        </div>
+        <div class="action-priority"><div class="level priority-critical">Crítico</div><span class="action-effort">Esforço: alto<br>Prazo: 7 dias</span></div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">03</div>
+        <div class="action-body">
+          <h3>Implementar régua de confirmação D-1 e D-0 no WhatsApp</h3>
+          <p>Show-up 71% custou R$ 1.838 em reuniões fantasma. <strong>Régua:</strong> mensagem 24h antes pedindo confirmação + mensagem 1h antes com link do Meet. Para high-ticket, considerar áudio pessoal do mentor.</p>
+          <p><strong>Meta:</strong> show-up &gt; 80%. <strong>Impacto:</strong> ~5 reuniões a mais por ciclo de 50 leads, custo zero de mídia.</p>
+        </div>
+        <div class="action-priority"><div class="level priority-critical">Crítico</div><span class="action-effort">Esforço: baixo<br>Prazo: 3 dias</span></div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">04</div>
+        <div class="action-body">
+          <h3>Investigar o criativo "010 Catedral" — alto show, zero venda</h3>
+          <p>11 agendamentos, 91% show-up, 0 vendas. Atrai gente que comparece mas não compra. <strong>Ação:</strong> rever copy + assistir 3 calls gravadas desse criativo para entender padrão. Talvez excelente como top-of-funnel se reposicionado para meta 20–50k.</p>
+        </div>
+        <div class="action-priority"><div class="level priority-high">Alta</div><span class="action-effort">Esforço: médio<br>Prazo: 10 dias</span></div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">05</div>
+        <div class="action-body">
+          <h3>Pausar "Autoridade (Bike)" e remanejar verba</h3>
+          <p>3 agendamentos, 33% show-up, R$ 288 gastos sem retorno. Pior performance da operação. <strong>Reinvestir o orçamento na campanha BR exceto Sul (MaxLead)</strong>, que entregou ROAS 20,6×.</p>
+        </div>
+        <div class="action-priority"><div class="level priority-high">Alta</div><span class="action-effort">Esforço: nulo<br>Prazo: hoje</span></div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">06</div>
+        <div class="action-body">
+          <h3>Trabalhar os 26 leads em pipeline antes de gastar R$1 novo</h3>
+          <p>4 follow-ups + 22 contatos futuros = R$ 80–160k de potencial sem custo de mídia. <strong>Régua:</strong> Follow-up recebe ligação semanal por 30 dias. Contato Futuro entra em sequência de nutrição (case + objeção) com revisita em 60/90/180 dias. Estruturar CRM mínimo (Notion, Trello, Pipedrive).</p>
+        </div>
+        <div class="action-priority"><div class="level priority-high">Alta</div><span class="action-effort">Esforço: médio<br>Prazo: 14 dias</span></div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">07</div>
+        <div class="action-body">
+          <h3>Escalar Públicos Semelhantes (BidCap) com cautela</h3>
+          <p>LAL entregou ROAS 27,4× em R$ 364 — pode ser sorte ou sinal forte. <strong>Triplicar orçamento gradualmente</strong> (R$ 364 → R$ 1.000 → R$ 2.500) em 21 dias, monitorando se a taxa de fechamento se sustenta. <strong>Stop loss:</strong> se CAC ultrapassar R$ 3.000, pausar.</p>
+        </div>
+        <div class="action-priority"><div class="level priority-mid">Média</div><span class="action-effort">Esforço: baixo<br>Prazo: 21 dias</span></div>
+      </div>
+    </div>
+
+    <div class="callout green reveal" style="margin-top: 48px;">
+      <div class="callout-label">🎯 Gatilho de religação do tráfego</div>
+      <div class="callout-body"><strong>Religar tráfego com confiança quando:</strong> (a) houver ao menos 2 criativos novos validados além do Tentante, (b) show-up rate ultrapassar 78% por 14 dias consecutivos, (c) score de qualificação automático estiver no ar filtrando perfil Mentor/Consultor e meta "20k começar" / "50k+" — direcionando volume para o sweet spot 20–50k. <strong>Antes disso, escalar é escalar problemas.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Metodologia</h4>
+      <p>Cruzamento entre 4 fontes: export Meta Ads, planilha CDP de leads (formulário), export Cal.com (agendamentos ativos + cancelamentos) e validação manual via WhatsApp.</p>
+    </div>
+    <div>
+      <h4>Limitações declaradas</h4>
+      <p>15 dos 56 agendamentos pagos não puderam ser cruzados às respostas do formulário por divergência de nome entre Cal.com e CDP. Estão contados no funil global mas excluídos do cross de qualificação.</p>
+    </div>
+    <div>
+      <h4>Próximos passos</h4>
+      <p>Revisão deste relatório em 14 dias com novos dados de show-up e conversão dos pontos 1-3 do plano de ação implementados.</p>
+    </div>
+  </div>
+  <div class="footer-signature">
+    <span>FFv23 · Funil Sessão Estratégica</span>
+    <span>Engenheiro de Dados · High Ticket</span>
+    <span>19 / 05 / 2026 · v2.0</span>
+  </div>
+</footer>
+
+<script>
+// Scroll progress bar
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+
+// Reveal animations on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
 
