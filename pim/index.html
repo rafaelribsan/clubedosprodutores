@@ -791,8 +791,8 @@
   @media (max-width: 640px) {
     body { font-size: 17px; }
 
-    /* Margem lateral única de 15px em TODO o documento */
-    .wrap, .wrap-wide { padding: 0 15px; }
+    /* Margem lateral única de 20px em TODO o documento */
+    .wrap, .wrap-wide { padding: 0 20px; }
 
     /* Espaçamento vertical enxuto — padrão da seção "O SPRINT está dividido..." */
     section { padding: 40px 0; }
@@ -820,13 +820,13 @@
     .nevers li { font-size: 1.15rem; }
     .closing p { font-size: 1.25rem; }
 
-    /* Corpo alinhado à ESQUERDA; títulos/subtítulos centralizados */
-    main p { text-align: left !important; }
+    /* Todo o texto de leitura alinhado à ESQUERDA */
+    main p,
     .intro-lead,
     h1, h2, h3,
     .rafael-intro p,
-    .vagas-box .sub,
-    .closing p { text-align: center !important; }
+    .closing p { text-align: left !important; }
+    .vagas-box .sub { text-align: center !important; } /* callout de vagas permanece centralizado */
 
     /* Caixas internas mais compactas */
     .statement-box { padding: 26px 18px; }
